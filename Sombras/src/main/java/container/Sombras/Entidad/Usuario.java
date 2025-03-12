@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "usuario")
 public class Usuario {
@@ -24,6 +27,7 @@ public class Usuario {
     @Column(name="imagen")
     private String imagen;
 
-
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Usuario_Personaje> usuarioPersonajes = new HashSet<>();
 
 }

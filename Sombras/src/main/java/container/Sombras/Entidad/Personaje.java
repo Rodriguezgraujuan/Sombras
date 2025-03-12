@@ -2,6 +2,7 @@ package container.Sombras.Entidad;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -30,10 +31,14 @@ public class Personaje {
     @Column(name = "arma")
     private String arma;
 
+    @Column(name = "publico")
+    private boolean pulico;
+
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "clase_id", nullable = false)
     private Clase clase;
 
-    @OneToMany()
-    private Set<Usuario_Personaje> usuarioPersonajes;
+    @OneToMany(mappedBy = "personaje", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Usuario_Personaje> usuarioPersonajes = new HashSet<>();
+
 }
