@@ -1,10 +1,11 @@
 package container.Sombras.Entidad;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Set;
-
+@NoArgsConstructor
 @Entity
 @Table(name="clases")
 public class Clase {
@@ -16,10 +17,48 @@ public class Clase {
     @Column(name = "clase")
     private String clase;
 
+    @Column(name = "pGolpe")
+    private String pGolpe;
+
     @OneToMany(mappedBy = "clase", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Personaje> personajes;
 
-    @Column(name = "atributo")
-    @OneToMany(mappedBy = "clase", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Clase_Atributo> atributoClase = new HashSet<>();
+
+    public Clase(String clase, String pGolpe) {
+        this.clase = clase;
+        this.pGolpe = pGolpe;
+        this.personajes = new HashSet<>();
+    }
+
+    public String getpGolpe() {
+        return pGolpe;
+    }
+
+    public void setpGolpe(String pGolpe) {
+        this.pGolpe = pGolpe;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getClase() {
+        return clase;
+    }
+
+    public Set<Personaje> getPersonajes() {
+        return personajes;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setClase(String clase) {
+        this.clase = clase;
+    }
+
+    public void setPersonajes(Set<Personaje> personajes) {
+        this.personajes = personajes;
+    }
 }

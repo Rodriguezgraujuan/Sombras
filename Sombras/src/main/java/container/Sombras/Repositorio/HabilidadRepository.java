@@ -1,10 +1,10 @@
 package container.Sombras.Repositorio;
 
-import container.Sombras.Entidad.Atributo;
+import container.Sombras.Entidad.Habilidad;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AtributoRepository extends JpaRepository<Atributo, Long>  {
-    Atributo findByName(String name);
+public interface HabilidadRepository extends JpaRepository<Habilidad, Long> {
+    Habilidad findByName(String name);
 }

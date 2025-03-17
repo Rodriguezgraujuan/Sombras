@@ -4,18 +4,15 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "claseAtributo")
-public class Clase_Atributo {
+public class Raza_Atributo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "aumento")
-    private long aumento;
-
     @ManyToOne
-    @JoinColumn(name = "Clase_id", referencedColumnName = "id", nullable = false)
-    private Clase clase;
+    @JoinColumn(name = "Raza_id", referencedColumnName = "id", nullable = false)
+    private Raza raza;
 
     @ManyToOne
     @JoinColumn(name = "Atributo_id", referencedColumnName = "id", nullable = false)
