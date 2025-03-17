@@ -42,8 +42,20 @@ public class Personaje {
     @JoinColumn(name = "clase_id", nullable = false)
     private Clase clase;
 
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "raza_id", nullable = false)
+    private Raza raza;
+
     @OneToMany(mappedBy = "personaje", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Usuario_Personaje> usuarioPersonajes = new HashSet<>();
+
+    public Raza getRaza() {
+        return raza;
+    }
+
+    public void setRaza(Raza raza) {
+        this.raza = raza;
+    }
 
     public String getNombre() {
         return nombre;

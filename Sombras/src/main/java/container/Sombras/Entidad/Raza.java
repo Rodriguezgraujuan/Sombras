@@ -30,6 +30,10 @@ public class Raza {
     @OneToMany(mappedBy = "raza", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Raza_Atributo> atributoRaza = new HashSet<>();
 
+    @Column(name = "personaje")
+    @OneToMany(mappedBy = "raza", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Personaje> personaje = new HashSet<>();
+
     public void setId(Long id) {
         this.id = id;
     }
