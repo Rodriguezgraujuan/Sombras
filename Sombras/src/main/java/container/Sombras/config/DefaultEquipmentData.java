@@ -54,6 +54,10 @@ public class DefaultEquipmentData {
             defaultEquipment.add(new Equipamiento("10 Flechas"));
             defaultEquipment.add(new Equipamiento("20 Flechas"));
             defaultEquipment.add(new Equipamiento("Herramientas de ladron"));
+            defaultEquipment.add(new Equipamiento("Paquete de erudito"));
+            defaultEquipment.add(new Equipamiento("Paquete de explorador de mazmorras"));
+            defaultEquipment.add(new Equipamiento("Paquete de sacerdote"));
+
 
 
             for(Equipamiento equipamiento : defaultEquipment){

@@ -36,41 +36,59 @@ public class DefaultClaseEquipamiento {
             equipamientos.forEach(equipamiento -> {
                 switch (equipamiento.getName()){
                     case "Gran hacha (dos manos)":
-                        clase_equipamientoservice.save(new Clase_Equipamiento());
+                        clase_equipamientoservice.save(new Clase_Equipamiento(barbaro, equipamiento));
                         break;
                     case "Dos hachas de guerra":
+                        clase_equipamientoservice.save(new Clase_Equipamiento(barbaro, equipamiento));
                         break;
                     case "Paquete de explorador":
+                        clase_equipamientoservice.save(new Clase_Equipamiento(barbaro, equipamiento));
                         break;
                     case "Cuatro jabalinas":
+                        clase_equipamientoservice.save(new Clase_Equipamiento(barbaro, equipamiento));
                         break;
                     case "Estoque":
+                        clase_equipamientoservice.save(new Clase_Equipamiento(bardo, equipamiento));
                         break;
                     case "Espada larga":
+                        clase_equipamientoservice.save(new Clase_Equipamiento(bardo, equipamiento));
                         break;
                     case "Paquete diplomatico":
+                        clase_equipamientoservice.save(new Clase_Equipamiento(bardo, equipamiento));
                         break;
                     case "Paquete de artista":
+                        clase_equipamientoservice.save(new Clase_Equipamiento(bardo, equipamiento));
                         break;
                     case "Laud":
+                        clase_equipamientoservice.save(new Clase_Equipamiento(bardo, equipamiento));
                         break;
                     case "Trompeta":
+                        clase_equipamientoservice.save(new Clase_Equipamiento(bardo, equipamiento));
                         break;
                     case "Flauta":
+                        clase_equipamientoservice.save(new Clase_Equipamiento(bardo, equipamiento));
                         break;
                     case "Armadura de cuero":
+                        clase_equipamientoservice.save(new Clase_Equipamiento(brujo, equipamiento));
+                        clase_equipamientoservice.save(new Clase_Equipamiento(bardo, equipamiento));
                         break;
                     case "Daga":
+                        clase_equipamientoservice.save(new Clase_Equipamiento(bardo, equipamiento));
                         break;
                     case "Ballesta ligera":
+                        clase_equipamientoservice.save(new Clase_Equipamiento(brujo, equipamiento));
                         break;
                     case "Saco de artefactos":
+                        clase_equipamientoservice.save(new Clase_Equipamiento(brujo, equipamiento));
                         break;
                     case "Canalizador Arcano":
+                        clase_equipamientoservice.save(new Clase_Equipamiento(brujo, equipamiento));
                         break;
                     case "Dagas dobles":
+                        clase_equipamientoservice.save(new Clase_Equipamiento(brujo, equipamiento));
                         break;
                     case "Maza":
+                        clase_equipamientoservice.save(new Clase_Equipamiento(clerigo, equipamiento));
                         break;
                     case "Martillo de guerra":
                         break;
@@ -105,6 +123,14 @@ public class DefaultClaseEquipamiento {
                     case "20 Flechas":
                         break;
                     case "Herramientas de ladron":
+                        break;
+                    case "Paquete de erudito":
+                        clase_equipamientoservice.save(new Clase_Equipamiento(brujo, equipamiento));
+                        break;
+                    case "Paquete de explorador de mazmorras":
+                        clase_equipamientoservice.save(new Clase_Equipamiento(brujo, equipamiento));
+                        break;
+                    case "Paquete de sacerdote":
                         break;
                 }
             });
