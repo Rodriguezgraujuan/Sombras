@@ -16,4 +16,10 @@ public class Clase_Equipamiento {
     @ManyToOne
     @JoinColumn(name = "Equipamiento_id", referencedColumnName = "id", nullable = false)
     private Equipamiento equipamiento;
+
+    public Clase_Equipamiento() {}
+    public Clase_Equipamiento(Clase clase, Equipamiento equipamiento) {
+        this.clase = clase;
+        this.equipamiento = equipamiento;
+    }
 }

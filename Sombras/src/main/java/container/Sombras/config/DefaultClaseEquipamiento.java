@@ -1,8 +1,10 @@
 package container.Sombras.config;
 
 import container.Sombras.Entidad.Clase;
+import container.Sombras.Entidad.Clase_Equipamiento;
 import container.Sombras.Entidad.Equipamiento;
 import container.Sombras.Servicio.ClaseService;
+import container.Sombras.Servicio.Clase_EquipamientoService;
 import container.Sombras.Servicio.EquipamientoService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +16,7 @@ import java.util.List;
 public class DefaultClaseEquipamiento {
 
     @Bean
-    CommandLineRunner initClaseEquipamiento(ClaseService claseService, EquipamientoService equipamientosService) {
+    CommandLineRunner initClaseEquipamiento(ClaseService claseService, EquipamientoService equipamientosService, Clase_EquipamientoService clase_equipamientoservice) {
         return args -> {
             Clase barbaro = claseService.findByNombre("Barbaro");
             Clase bardo = claseService.findByNombre("Bardo");
@@ -34,6 +36,7 @@ public class DefaultClaseEquipamiento {
             equipamientos.forEach(equipamiento -> {
                 switch (equipamiento.getName()){
                     case "Gran hacha (dos manos)":
+                        clase_equipamientoservice.save(new Clase_Equipamiento());
                         break;
                     case "Dos hachas de guerra":
                         break;

@@ -1,17 +1,17 @@
 package container.Sombras.Servicio;
 
 import container.Sombras.Entidad.Clase_Equipamiento;
-import container.Sombras.Repositorio.Raza_EquipamientoRepository;
+import container.Sombras.Repositorio.Clase_EquipamientoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class Raza_EquipamientoService {
+public class Clase_EquipamientoService {
 
     @Autowired
-    Raza_EquipamientoRepository razaEquipamientoRepository;
+    Clase_EquipamientoRepository razaEquipamientoRepository;
 
     public Clase_Equipamiento findById(Long id){
         return razaEquipamientoRepository.findById(id).orElse(null);

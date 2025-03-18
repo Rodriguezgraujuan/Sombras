@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface Raza_EquipamientoRepository extends JpaRepository<Clase_Equipamiento, Long> {
+public interface Clase_EquipamientoRepository extends JpaRepository<Clase_Equipamiento, Long> {
 }
