@@ -1,7 +1,6 @@
 package container.Sombras.Entidad;
 
 import jakarta.persistence.*;
-import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
@@ -16,9 +15,9 @@ public class Equipamiento {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "razaEquipamiento")
+    @Column(name = "claseEquipamiento")
     @OneToMany(mappedBy = "equipamiento", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Raza_Equipamiento> razaEquipamiento;
+    private Set<Clase_Equipamiento> claseEquipamiento;
 
     public Equipamiento(String name) {
         this.name = name;
@@ -34,8 +33,8 @@ public class Equipamiento {
         return name;
     }
 
-    public Set<Raza_Equipamiento> getRazaEquipamiento() {
-        return razaEquipamiento;
+    public Set<Clase_Equipamiento> getRazaEquipamiento() {
+        return claseEquipamiento;
     }
 
     public void setId(Long id) {
@@ -44,7 +43,7 @@ public class Equipamiento {
     public void setName(String name) {
         this.name = name;
     }
-    public void setRazaEquipamiento(Set<Raza_Equipamiento> razaEquipamiento) {
-        this.razaEquipamiento = razaEquipamiento;
+    public void setclaseEquipamiento(Set<Clase_Equipamiento> razaEquipamiento) {
+        this.claseEquipamiento = razaEquipamiento;
     }
 }

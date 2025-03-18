@@ -17,8 +17,17 @@ public class Clase {
     @Column(name = "clase")
     private String clase;
 
+    @OneToMany(mappedBy = "clase", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Clase_Equipamiento> claseEquipamientos;
+
     @Column(name = "pGolpe")
     private String pGolpe;
+
+    @Column(name = "lanzador")
+    private String lanzador;
+
+    @Column(name = "conjuros")
+    private String conjuros;
 
     @OneToMany(mappedBy = "clase", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Personaje> personajes;
