@@ -15,8 +15,9 @@ public class Conjuros {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "tipo")
-    private String tipo;
+    @ManyToOne
+    @JoinColumn(name = "Clase_id", referencedColumnName = "id", nullable = false)
+    private Clase clase;
 
     public Conjuros() {}
     public Conjuros(String nombre, String descripcion) {
@@ -48,11 +49,10 @@ public class Conjuros {
         this.descripcion = descripcion;
     }
 
-    public String getTipo() {
-        return tipo;
+    public Clase getClase() {
+        return clase;
     }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setClase(Clase clase) {
+        this.clase = clase;
     }
 }
