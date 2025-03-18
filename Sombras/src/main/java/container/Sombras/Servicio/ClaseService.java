@@ -29,4 +29,8 @@ public class ClaseService {
     public Clase findByNombre(String clase){
         return claseRepository.findByNombre(clase);
     }
+
+    public void saveAll(List<Clase> clases){
+        claseRepository.saveAll(clases);
+    }
 }

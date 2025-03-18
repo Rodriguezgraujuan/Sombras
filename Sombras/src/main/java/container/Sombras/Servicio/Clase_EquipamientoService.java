@@ -15,6 +15,9 @@ public class Clase_EquipamientoService {
     @Autowired
     Clase_EquipamientoRepository claseEquipamientoRepository;
 
+    @Autowired
+    ClaseService claseService;
+
     public Clase_Equipamiento findById(Long id) {
         return claseEquipamientoRepository.findById(id).orElse(null);
     }

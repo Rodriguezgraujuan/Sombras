@@ -38,6 +38,7 @@ public class Clase {
         this.personajes = new HashSet<>();
         this.lanzador = lanzador;
         this.conjuros = conjuros;
+        this.claseEquipamientos = new HashSet<>();
     }
 
     public Clase(){}
@@ -100,5 +101,12 @@ public class Clase {
 
     public void addConjuro(Conjuros conjuro){
         this.conjuros.add(conjuro);
+    }
+
+    public void addPersonaje(Personaje personaje){
+        this.personajes.add(personaje);
+    }
+    public void addEquipamiento(Clase_Equipamiento equipamiento){
+        this.claseEquipamientos.add(equipamiento);
     }
 }

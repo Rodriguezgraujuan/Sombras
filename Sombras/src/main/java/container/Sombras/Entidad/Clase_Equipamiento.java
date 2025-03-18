@@ -22,4 +22,28 @@ public class Clase_Equipamiento {
         this.clase = clase;
         this.equipamiento = equipamiento;
     }
+
+    public Clase getClase() {
+        return clase;
+    }
+
+    public Equipamiento getEquipamiento() {
+        return equipamiento;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setClase(Clase clase) {
+        this.clase = clase;
+    }
+
+    public void setEquipamiento(Equipamiento equipamiento) {
+        this.equipamiento = equipamiento;
+    }
+
+    public Long getId() {
+        return id;
+    }
 }
