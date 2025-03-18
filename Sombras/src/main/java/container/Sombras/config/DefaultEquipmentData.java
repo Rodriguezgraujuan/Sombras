@@ -57,6 +57,10 @@ public class DefaultEquipmentData {
             defaultEquipment.add(new Equipamiento("Paquete de erudito"));
             defaultEquipment.add(new Equipamiento("Paquete de explorador de mazmorras"));
             defaultEquipment.add(new Equipamiento("Paquete de sacerdote"));
+            defaultEquipment.add(new Equipamiento("Paquete religioso"));
+            defaultEquipment.add(new Equipamiento("Vara"));
+            defaultEquipment.add(new Equipamiento("Baston de madera"));
+            defaultEquipment.add(new Equipamiento("Armadura reforzada"));
 
 
 

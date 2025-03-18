@@ -28,7 +28,9 @@ public class DefaultClaseData {
             clasesPorDefecto.add(new Clase("Monje", "d8", null, new HashSet<>()));
             clasesPorDefecto.add(new Clase("Paladin", "d10", "Lanzador Medio", new HashSet<>()));
             clasesPorDefecto.add(new Clase("Picaro", "d8", null, new HashSet<>()));
-
+            clasesPorDefecto.add(new Clase("Caballero", "d10", null, new HashSet<>()));
+            clasesPorDefecto.add(new Clase("Orco", "d14", null, new HashSet<>()));
+            clasesPorDefecto.add(new Clase("Ranger", "d14", "Larnzador Largo", new HashSet<>()));
 
             for (Clase clase : clasesPorDefecto){
                 if (claseService.findByNombre(clase.getNombre())==null){

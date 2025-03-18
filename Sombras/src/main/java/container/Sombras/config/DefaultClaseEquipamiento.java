@@ -15,6 +15,12 @@ import java.util.List;
 @Configuration
 public class DefaultClaseEquipamiento {
 
+    private void saveIfNotExists(Clase_EquipamientoService service, Clase clase, Equipamiento equipamiento) {
+        if (!service.existsByClaseAndEquipamiento(clase, equipamiento)) {
+            service.save(new Clase_Equipamiento(clase, equipamiento));
+        }
+    }
+
     @Bean
     CommandLineRunner initClaseEquipamiento(ClaseService claseService, EquipamientoService equipamientosService, Clase_EquipamientoService clase_equipamientoservice) {
         return args -> {
@@ -25,112 +31,136 @@ public class DefaultClaseEquipamiento {
             Clase druida = claseService.findByNombre("Druida");
             Clase explorador = claseService.findByNombre("Explorador");
             Clase guerrero = claseService.findByNombre("Guerrero");
-            Clase hechizero = claseService.findByNombre("Hechizero");
+            Clase hechizero = claseService.findByNombre("Hechicero");
             Clase mago = claseService.findByNombre("Mago");
             Clase monje = claseService.findByNombre("Monje");
             Clase paladin = claseService.findByNombre("Paladin");
             Clase picaro = claseService.findByNombre("Picaro");
+            Clase caballero = claseService.findByNombre("Caballero");
+            Clase orco = claseService.findByNombre("Orco");
+            Clase ranger = claseService.findByNombre("Ranger");
+            System.out.println("Clases cargadas");
+            System.out.println(ranger);
 
             List<Equipamiento> equipamientos = equipamientosService.findAll();
 
             equipamientos.forEach(equipamiento -> {
-                switch (equipamiento.getName()){
+                switch (equipamiento.getName()) {
                     case "Gran hacha (dos manos)":
-                        clase_equipamientoservice.save(new Clase_Equipamiento(barbaro, equipamiento));
+                        saveIfNotExists(clase_equipamientoservice, orco, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, guerrero, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, barbaro, equipamiento);
                         break;
                     case "Dos hachas de guerra":
-                        clase_equipamientoservice.save(new Clase_Equipamiento(barbaro, equipamiento));
+                        saveIfNotExists(clase_equipamientoservice, guerrero, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, explorador, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, barbaro, equipamiento);
                         break;
                     case "Paquete de explorador":
-                        clase_equipamientoservice.save(new Clase_Equipamiento(barbaro, equipamiento));
+                        saveIfNotExists(clase_equipamientoservice, ranger, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, caballero, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, picaro, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, paladin, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, monje, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, hechizero, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, guerrero, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, explorador, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, barbaro, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, bardo, equipamiento);
                         break;
                     case "Cuatro jabalinas":
-                        clase_equipamientoservice.save(new Clase_Equipamiento(barbaro, equipamiento));
+                        saveIfNotExists(clase_equipamientoservice, ranger, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, paladin, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, monje, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, explorador, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, bardo, equipamiento);
                         break;
                     case "Estoque":
-                        clase_equipamientoservice.save(new Clase_Equipamiento(bardo, equipamiento));
+                        saveIfNotExists(clase_equipamientoservice, ranger, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, picaro, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, paladin, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, hechizero, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, bardo, equipamiento);
                         break;
                     case "Espada larga":
-                        clase_equipamientoservice.save(new Clase_Equipamiento(bardo, equipamiento));
+                        saveIfNotExists(clase_equipamientoservice, caballero, equipamiento);
+                        break;
+                    case "Armadura reforzada":
+                        saveIfNotExists(clase_equipamientoservice, orco, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, caballero, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, paladin, equipamiento);
                         break;
                     case "Paquete diplomatico":
-                        clase_equipamientoservice.save(new Clase_Equipamiento(bardo, equipamiento));
+                        saveIfNotExists(clase_equipamientoservice, caballero, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, paladin, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, monje, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, mago, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, explorador, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, bardo, equipamiento);
                         break;
                     case "Paquete de artista":
-                        clase_equipamientoservice.save(new Clase_Equipamiento(bardo, equipamiento));
-                        break;
                     case "Laud":
-                        clase_equipamientoservice.save(new Clase_Equipamiento(bardo, equipamiento));
-                        break;
                     case "Trompeta":
-                        clase_equipamientoservice.save(new Clase_Equipamiento(bardo, equipamiento));
-                        break;
                     case "Flauta":
-                        clase_equipamientoservice.save(new Clase_Equipamiento(bardo, equipamiento));
+                        saveIfNotExists(clase_equipamientoservice, bardo, equipamiento);
                         break;
                     case "Armadura de cuero":
-                        clase_equipamientoservice.save(new Clase_Equipamiento(brujo, equipamiento));
-                        clase_equipamientoservice.save(new Clase_Equipamiento(bardo, equipamiento));
+                        saveIfNotExists(clase_equipamientoservice, orco, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, picaro, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, paladin, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, monje, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, guerrero, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, explorador, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, barbaro, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, brujo, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, bardo, equipamiento);
                         break;
                     case "Daga":
-                        clase_equipamientoservice.save(new Clase_Equipamiento(bardo, equipamiento));
+                        saveIfNotExists(clase_equipamientoservice, ranger, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, caballero, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, picaro, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, paladin, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, monje, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, hechizero, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, explorador, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, bardo, equipamiento);
                         break;
                     case "Ballesta ligera":
-                        clase_equipamientoservice.save(new Clase_Equipamiento(brujo, equipamiento));
+                    case "10 Flechas":
+                        saveIfNotExists(clase_equipamientoservice, ranger, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, explorador, equipamiento);
                         break;
                     case "Saco de artefactos":
-                        clase_equipamientoservice.save(new Clase_Equipamiento(brujo, equipamiento));
+                        saveIfNotExists(clase_equipamientoservice, mago, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, hechizero, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, druida, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, clerigo, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, brujo, equipamiento);
                         break;
                     case "Canalizador Arcano":
-                        clase_equipamientoservice.save(new Clase_Equipamiento(brujo, equipamiento));
-                        break;
-                    case "Dagas dobles":
-                        clase_equipamientoservice.save(new Clase_Equipamiento(brujo, equipamiento));
-                        break;
-                    case "Maza":
-                        clase_equipamientoservice.save(new Clase_Equipamiento(clerigo, equipamiento));
-                        break;
-                    case "Martillo de guerra":
-                        break;
-                    case "Cota de escamas":
-                        break;
-                    case "Cota de malla":
-                        break;
-                    case "Escudo reforzado":
-                        break;
-                    case "Baston sagrado":
-                        break;
-                    case "Escudo de madera":
+                        saveIfNotExists(clase_equipamientoservice, mago, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, hechizero, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, brujo, equipamiento);
                         break;
                     case "Cimitarra":
+                        saveIfNotExists(clase_equipamientoservice, picaro, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, monje, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, guerrero, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, explorador, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, clerigo, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, barbaro, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, bardo, equipamiento);
                         break;
                     case "Dos espadas cortas":
+                    case "Espada corta":
+                        saveIfNotExists(clase_equipamientoservice, picaro, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, paladin, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, guerrero, equipamiento);
+                        saveIfNotExists(clase_equipamientoservice, explorador, equipamiento);
                         break;
                     case "Arco largo":
-                        break;
-                    case "Baston enraizado":
-                        break;
-                    case "Libro de conjuros":
-                        break;
-                    case "Espada corta":
-                        break;
-                    case "10 Dardos":
-                        break;
-                    case "5 Flechas":
-                        break;
-                    case "10 Flechas":
-                        break;
                     case "20 Flechas":
-                        break;
-                    case "Herramientas de ladron":
-                        break;
-                    case "Paquete de erudito":
-                        clase_equipamientoservice.save(new Clase_Equipamiento(brujo, equipamiento));
-                        break;
-                    case "Paquete de explorador de mazmorras":
-                        clase_equipamientoservice.save(new Clase_Equipamiento(brujo, equipamiento));
-                        break;
-                    case "Paquete de sacerdote":
+                        saveIfNotExists(clase_equipamientoservice, ranger, equipamiento);
                         break;
                 }
             });
