@@ -3,7 +3,7 @@ package container.Sombras.Entidad;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "razaEquipamiento")
+@Table(name = "claseEquipamiento")
 public class Clase_Equipamiento {
 
     @Id

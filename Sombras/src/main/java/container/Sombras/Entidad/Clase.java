@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Set;
-@NoArgsConstructor
 @Entity
 @Table(name="clases")
 public class Clase {
@@ -14,8 +13,8 @@ public class Clase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "clase")
-    private String clase;
+    @Column(name = "nombre")
+    private String nombre;
 
     @OneToMany(mappedBy = "clase", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Clase_Equipamiento> claseEquipamientos;
@@ -33,11 +32,15 @@ public class Clase {
     private Set<Personaje> personajes;
 
 
-    public Clase(String clase, String pGolpe) {
-        this.clase = clase;
+    public Clase(String clase, String pGolpe, String lanzador, Set<Conjuros> conjuros) {
+        this.nombre = clase;
         this.pGolpe = pGolpe;
         this.personajes = new HashSet<>();
+        this.lanzador = lanzador;
+        this.conjuros = conjuros;
     }
+
+    public Clase(){}
 
     public String getpGolpe() {
         return pGolpe;
@@ -51,8 +54,8 @@ public class Clase {
         return id;
     }
 
-    public String getClase() {
-        return clase;
+    public String getNombre() {
+        return nombre;
     }
 
     public Set<Personaje> getPersonajes() {
@@ -63,11 +66,39 @@ public class Clase {
         this.id = id;
     }
 
-    public void setClase(String clase) {
-        this.clase = clase;
+    public void setNombre(String clase) {
+        this.nombre = clase;
     }
 
     public void setPersonajes(Set<Personaje> personajes) {
         this.personajes = personajes;
+    }
+
+    public Set<Clase_Equipamiento> getClaseEquipamientos() {
+        return claseEquipamientos;
+    }
+
+    public Set<Conjuros> getConjuros() {
+        return conjuros;
+    }
+
+    public String getLanzador() {
+        return lanzador;
+    }
+
+    public void setClaseEquipamientos(Set<Clase_Equipamiento> claseEquipamientos) {
+        this.claseEquipamientos = claseEquipamientos;
+    }
+
+    public void setConjuros(Set<Conjuros> conjuros) {
+        this.conjuros = conjuros;
+    }
+
+    public void setLanzador(String lanzador) {
+        this.lanzador = lanzador;
+    }
+
+    public void addConjuro(Conjuros conjuro){
+        this.conjuros.add(conjuro);
     }
 }

@@ -33,7 +33,7 @@ public class Equipamiento {
         return name;
     }
 
-    public Set<Clase_Equipamiento> getRazaEquipamiento() {
+    public Set<Clase_Equipamiento> getClaseEquipamiento() {
         return claseEquipamiento;
     }
 
@@ -43,7 +43,7 @@ public class Equipamiento {
     public void setName(String name) {
         this.name = name;
     }
-    public void setclaseEquipamiento(Set<Clase_Equipamiento> razaEquipamiento) {
+    public void setClaseEquipamiento(Set<Clase_Equipamiento> razaEquipamiento) {
         this.claseEquipamiento = razaEquipamiento;
     }
 }

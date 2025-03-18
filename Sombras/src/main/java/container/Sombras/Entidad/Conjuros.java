@@ -20,9 +20,10 @@ public class Conjuros {
     private Clase clase;
 
     public Conjuros() {}
-    public Conjuros(String nombre, String descripcion) {
+    public Conjuros(String nombre, String descripcion, Clase clase) {
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.clase = clase;
     }
 
     public Long getId() {

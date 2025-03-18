@@ -2,6 +2,7 @@ package container.Sombras.Servicio;
 
 import container.Sombras.Entidad.Clase;
 import container.Sombras.Repositorio.ClaseRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,8 @@ public class ClaseService {
     public List<Clase> findAll(){
         return claseRepository.findAll();
     }
-    public Clase findByClase(String clase){
-        return claseRepository.findByClase(clase);
+
+    public Clase findByNombre(String clase){
+        return claseRepository.findByNombre(clase);
     }
 }
