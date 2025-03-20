@@ -14,10 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-@Order(3)
 public class DefaultEquipmentData {
 
     @Bean
+    @Order(3)
     CommandLineRunner initEquipmentData(EquipamientoService equipamientoService){
         return args -> {
             List<Equipamiento> defaultEquipment = new ArrayList<>();

@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-@Order(1)
 public class DefaultAtributeData {
     @Bean
+    @Order(1)
     CommandLineRunner initAtributeData(AtributoRepository atributoRepository, AtributoService atributoService){
         return args -> {
             List<Atributo> atributosPorDefectos = new ArrayList<>();
@@ -26,8 +26,8 @@ public class DefaultAtributeData {
             atributosPorDefectos.add(new Atributo("Constitucion", "Constitucion +1 puntos",1));
             atributosPorDefectos.add(new Atributo("Inteligencia Experto","Inteligencia +2 puntos",2));
             atributosPorDefectos.add(new Atributo("Destreza","Destreza +1 puntos",1));
-            atributosPorDefectos.add(new Atributo("Fuerza Experta","Fuerza +2 puntos",2));
-            atributosPorDefectos.add(new Atributo("Constitucion Experta","Constitucion +2 puntos",2));
+            atributosPorDefectos.add(new Atributo("Fuerza Experto","Fuerza +2 puntos",2));
+            atributosPorDefectos.add(new Atributo("Constitucion Experto","Constitucion +2 puntos",2));
             atributosPorDefectos.add(new Atributo("Fuerza","Fuerza +1 puntos",1));
 
             for(Atributo atributo : atributosPorDefectos){

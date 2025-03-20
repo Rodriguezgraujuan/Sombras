@@ -34,6 +34,10 @@ public class Clase_EquipamientoService {
         return claseEquipamientoRepository.findAll();
     }
 
+    public void deleteAll(){
+        claseEquipamientoRepository.deleteAll();
+    }
+
     public boolean existsByClaseAndEquipamiento(Clase clase, Equipamiento equipamiento) {
         return claseEquipamientoRepository.existsByClaseAndEquipamiento(clase, equipamiento);
     }

@@ -15,12 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-@Order(5)
 public class DefaultUserData {
     @Autowired
     PasswordEncoder passwordEncoder;
 
     @Bean
+    @Order(5)
     CommandLineRunner initUserData(UsuarioService usuarioService) {
         return args -> {
             List<Usuario> usuariosPorDefecto = List.of(

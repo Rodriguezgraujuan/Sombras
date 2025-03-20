@@ -14,7 +14,6 @@ import org.springframework.core.annotation.Order;
 import java.util.*;
 
 @Configuration
-@Order(7)
 public class DefaultClaseEquipamiento {
 
     private void saveIfNotExists(Clase_EquipamientoService service, Clase clase, Equipamiento equipamiento, Set<Clase_Equipamiento> claseSet ) {
@@ -31,8 +30,10 @@ public class DefaultClaseEquipamiento {
 
 
     @Bean
+    @Order(8)
     CommandLineRunner initClaseEquipamiento(ClaseService claseService, EquipamientoService equipamientosService, Clase_EquipamientoService clase_equipamientoservice) {
         return args -> {
+            clase_equipamientoservice.deleteAll();
             Clase barbaro = claseService.findByNombre("Barbaro");
             Clase bardo = claseService.findByNombre("Bardo");
             Clase brujo = claseService.findByNombre("Brujo");

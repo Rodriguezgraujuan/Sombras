@@ -19,9 +19,9 @@ import java.util.List;
 import java.util.Set;
 
 @Configuration
-@Order(4)
 public class DefaultConjurosData {
     @Bean
+    @Order(6)
     CommandLineRunner initMagicData(ConjuroService conjuroService, ClaseService claseService){
         return args -> {
             List<Conjuros> conjurosPorDefecto = new ArrayList<>();

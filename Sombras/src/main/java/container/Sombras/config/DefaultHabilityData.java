@@ -15,9 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-@Order(2)
 public class DefaultHabilityData {
     @Bean
+    @Order(2)
     CommandLineRunner initHabilityData(HabilidadService habilidadService){
         return args -> {
             List<Habilidad> habilidadesPorDefecto = new ArrayList<>();

@@ -12,9 +12,9 @@ import java.util.HashSet;
 import java.util.List;
 
 @Configuration
-@Order(6)
 public class DefaultClaseData {
     @Bean
+    @Order(4)
     CommandLineRunner initClaseData(ClaseService claseService) {
         return args -> {
             List<Clase> clasesPorDefecto = new ArrayList<>();
