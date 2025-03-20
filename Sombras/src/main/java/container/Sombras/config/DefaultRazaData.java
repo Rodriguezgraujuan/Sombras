@@ -56,6 +56,7 @@ public class DefaultRazaData {
             raza_atributosPorDefecto.add(new Raza_Atributo(razaService.findByName("Enano"), atributoService.findByName("Fuerza")));
             raza_atributosPorDefecto.forEach(raza_atributo -> {
                 if (!raza_AtributoRepository.existsByRazaAndAtributo(raza_atributo.getRaza(), raza_atributo.getAtributo())){
+                    System.out.println(raza_atributo.getRaza().getName() + " " + raza_atributo.getAtributo().getName());
                     raza_AtributoRepository.save(raza_atributo);
                 }
             });

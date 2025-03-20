@@ -5,12 +5,14 @@ import container.Sombras.Servicio.ClaseService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 @Configuration
+@Order(6)
 public class DefaultClaseData {
     @Bean
     CommandLineRunner initClaseData(ClaseService claseService) {

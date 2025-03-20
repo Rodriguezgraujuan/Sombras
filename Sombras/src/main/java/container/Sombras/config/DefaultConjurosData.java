@@ -11,6 +11,7 @@ import org.hibernate.Hibernate;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.Set;
 
 @Configuration
+@Order(4)
 public class DefaultConjurosData {
     @Bean
     CommandLineRunner initMagicData(ConjuroService conjuroService, ClaseService claseService){

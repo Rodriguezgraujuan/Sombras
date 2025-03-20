@@ -8,11 +8,13 @@ import container.Sombras.Servicio.EquipamientoService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
+@Order(3)
 public class DefaultEquipmentData {
 
     @Bean

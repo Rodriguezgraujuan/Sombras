@@ -9,10 +9,12 @@ import container.Sombras.Servicio.EquipamientoService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 
 import java.util.*;
 
 @Configuration
+@Order(7)
 public class DefaultClaseEquipamiento {
 
     private void saveIfNotExists(Clase_EquipamientoService service, Clase clase, Equipamiento equipamiento, Set<Clase_Equipamiento> claseSet ) {
