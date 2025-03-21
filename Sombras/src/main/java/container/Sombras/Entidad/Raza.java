@@ -31,7 +31,7 @@ public class Raza {
     private Set<Raza_Atributo> atributoRaza = new HashSet<>();
 
     @Column(name = "personaje")
-    @OneToMany(mappedBy = "raza", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "raza", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Personaje> personaje = new HashSet<>();
 
     public Raza() {}

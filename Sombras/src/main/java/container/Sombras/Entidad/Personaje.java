@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import java.util.HashSet;
 import java.util.Set;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "Personaje")
 public class Personaje {
@@ -23,31 +21,69 @@ public class Personaje {
     @Column(name = "apellido")
     private String apellido;
 
-    @Column(name = "salud")
-    private String salud;
-
-    @Column(name = "resistencia")
-    private String resistencia;
-
-    @Column(name = "tipoDps")
-    private String tipoDps;
-
-    @Column(name = "arma")
-    private String arma;
+    @Column(name = "descripcion")
+    private String descripcion;
 
     @Column(name = "publico")
     private boolean pulico;
+
+    @Column(name = "imagen")
+    private String imagen;
+
+    @Column(name = "nivel")
+    private int nivel;
+
+    @Column(name = "inteligencia")
+    private int inteligencia;
+
+    @Column(name = "fuerza")
+    private int fuerza;
+
+    @Column(name = "destreza")
+    private int destreza;
+
+    @Column(name = "constitucion")
+    private int constitucion;
+
+    @Column(name = "sabiduria")
+    private int sabiduria;
 
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "clase_id", nullable = false)
     private Clase clase;
 
+
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "raza_id", nullable = false)
     private Raza raza;
 
-    @OneToMany(mappedBy = "personaje", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Usuario_Personaje> usuarioPersonajes = new HashSet<>();
+    public Personaje(String nombre, String apellido, Clase clase, Raza raza, String descripcion, String imagen, int nivel) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.descripcion = descripcion;
+        this.clase = clase;
+        this.raza = raza;
+        this.imagen = imagen;
+        this.nivel = nivel;
+    }
+
+    public Personaje(boolean publico,String nombre, String apellido, Clase clase, Raza raza, String descripcion, String imagen, int nivel, int destreza, int constitucion, int inteligencia, int fuerza, int sabiduria) {
+        pulico = publico;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.descripcion = descripcion;
+        this.clase = clase;
+        this.raza = raza;
+        this.imagen = imagen;
+        this.nivel = nivel;
+        this.destreza = destreza;
+        this.constitucion = constitucion;
+        this.inteligencia = inteligencia;
+        this.fuerza = fuerza;
+        this.sabiduria = sabiduria;
+    }
+
+    public Personaje() {}
 
     public Raza getRaza() {
         return raza;
@@ -73,33 +109,14 @@ public class Personaje {
         return apellido;
     }
 
-    public String getArma() {
-        return arma;
-    }
-
-    public String getResistencia() {
-        return resistencia;
-    }
-
-    public String getSalud() {
-        return salud;
-    }
-
-    public String getTipoDps() {
-        return tipoDps;
-    }
-
-    public Set<Usuario_Personaje> getUsuarioPersonajes() {
-        return usuarioPersonajes;
+    public boolean isPulico() {
+        return pulico;
     }
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
 
-    public void setArma(String arma) {
-        this.arma = arma;
-    }
 
     public void setClase(Clase clase) {
         this.clase = clase;
@@ -117,19 +134,67 @@ public class Personaje {
         this.pulico = pulico;
     }
 
-    public void setResistencia(String resistencia) {
-        this.resistencia = resistencia;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setSalud(String salud) {
-        this.salud = salud;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public void setTipoDps(String tipoDps) {
-        this.tipoDps = tipoDps;
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setUsuarioPersonajes(Set<Usuario_Personaje> usuarioPersonajes) {
-        this.usuarioPersonajes = usuarioPersonajes;
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
+    public int getDestreza() {
+        return destreza;
+    }
+
+    public int getConstitucion() {
+        return constitucion;
+    }
+
+    public int getInteligencia() {
+        return inteligencia;
+    }
+
+    public int getFuerza() {
+        return fuerza;
+    }
+
+    public int getSabiduria() {
+        return sabiduria;
+    }
+
+    public void setConstitucion(int constitucion) {
+        this.constitucion = constitucion;
+    }
+
+    public void setFuerza(int fuerza) {
+        this.fuerza = fuerza;
+    }
+
+    public void setDestreza(int destreza) {
+        this.destreza = destreza;
+    }
+
+    public void setInteligencia(int inteligencia) {
+        this.inteligencia = inteligencia;
+    }
+
+    public void setSabiduria(int sabiduria) {
+        this.sabiduria = sabiduria;
     }
 }

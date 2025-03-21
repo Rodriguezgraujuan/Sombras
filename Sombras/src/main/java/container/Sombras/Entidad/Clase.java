@@ -28,7 +28,7 @@ public class Clase {
     @OneToMany(mappedBy = "clase", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Conjuros> conjuros;
 
-    @OneToMany(mappedBy = "clase", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "clase", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Personaje> personajes;
 
 
