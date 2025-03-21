@@ -1,0 +1,96 @@
+/* Importar fuente medieval */
+@import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap');
+
+/* Fondo de piedra oscura */
+body {
+    color: #e0c097; /* Color pergamino */
+    font-family: 'Uncial Antiqua', serif; /* Fuente medieval */
+}
+
+#changeIMG{
+    width: 40px;
+}
+
+.hero {
+    background: url('../images/fondo.webp') no-repeat center center;
+    background-size: cover;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+    border-bottom: 5px solid #8b5a2b;
+}
+
+.navbar {
+    background-color: #1c1c1c !important; /* Negro cavernoso */
+    border-bottom: 3px solid gold;
+}
+
+.navbar {
+background-color: #1c1c1c !important; /* Negro cavernoso */
+border-bottom: 3px solid gold;
+margin-left: 0;
+margin-right: 0;
+}
+
+.navbar-brand {
+    color: gold !important;
+    font-size: 2rem;
+}
+.nav-link {
+    color: #e0c097 !important;
+}
+.nav-link:hover {
+    color: gold !important;
+}
+#userDropDown{
+    background-color: #7f7f7f;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #343a40 !important; /* Un tono oscuro para que no sea blanco */
+    color: #f8f9fa !important; /* Un color claro para el texto */
+  }
+
+.btn-custom {
+    background: linear-gradient(to bottom, #c7a17a, #8d6e63);
+    color: #3e2723;
+    border: 2px solid #5d4037;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+.btn-custom:hover {
+    background: linear-gradient(to bottom, #8d6e63, #5d4037);
+    color: white;
+}
+
+#cards{
+    /* Textura de piedra oscura */
+    background-size: cover;
+    background: url('../images/fondo.webp') center;
+}
+
+.card {
+    background: url('../images/pergamino.jpg') center;
+    background-size: cover;
+    object-fit: cover;
+    color: #471700;
+    border: 3px solid #c28343;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+.tc{
+    color:#622727;
+}
+.card-title {
+    color: rgb(75, 12, 9);
+}
+
+footer {
+    background-color: #1c1c1c;
+    color: #e0c097;
+    border-top: 5px solid gold;
+}
+footer a {
+    color: gold;
+    text-decoration: none;
+}
+footer a:hover {
+    color: #b8860b;
+}

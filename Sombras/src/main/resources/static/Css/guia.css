@@ -1,0 +1,37 @@
+/* Estilo general */
+body {
+    /*font-family: 'Cinzel', serif;*/
+    font-family: 'Uncial Antiqua', serif; /* Fuente medieval */
+    background-color: #2e2b2b; /* Fondo oscuro */
+    color: #f1c40f; /* Texto dorado */
+  }
+  #header .navbar, #header .navbar-brand {
+   font-family: 'Uncial Antiqua', serif;
+  }
+
+  header {
+    background-color: #1f1f1f;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .navbar {
+    font-family: 'MedievalSharp', cursive;
+  }
+
+
+  .accordion-button {
+    background-color: #6c4f3d;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .accordion-button:hover {
+    background-color: #8e6a4b;
+  }
+
+  .accordion-body {
+    background-color: #3e2b1f;
+    color: #ecf0f1;
+    font-size: 1.1rem;
+  }
