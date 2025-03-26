@@ -1,5 +1,8 @@
 package container.Sombras;
 
+import container.Sombras.Entidad.Usuario;
+import container.Sombras.Repositorio.UsuarioRepository;
+import container.Sombras.Servicio.CustomOAuth2UserService;
 import container.Sombras.Servicio.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,17 +18,24 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.Map;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurity {
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+    @Autowired
+    private CustomOAuth2UserService customOAuth2UserService;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -45,6 +55,14 @@ public class WebSecurity {
                 logout.logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout")
                         .permitAll()
+        ).oauth2Login(oauth2 -> oauth2
+                .loginPage("/login")
+                .defaultSuccessUrl("/home.html", true)
+                .failureUrl("/login?error")
+                .userInfoEndpoint(userInfo -> userInfo
+                        .userService(customOAuth2UserService)
+                )
+                .successHandler(oauth2SuccessHandler())
         );
         return http.build();
     }
@@ -56,6 +74,32 @@ public class WebSecurity {
     public UserDetailsService userDetailsService() {
         return new CustomUserDetailsService();
     }
+
+    private AuthenticationSuccessHandler oauth2SuccessHandler() {
+        return (request, response, authentication) -> {
+            OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
+            Map<String, Object> attributes = oAuth2User.getAttributes();
+            String email = (String) attributes.get("email");
+            String name = (String) attributes.get("name");
+
+            Usuario usuario = usuarioRepository.findByEmail(email);
+
+            if (usuario == null) {
+                usuario = new Usuario();
+                usuario.setEmail(email);
+                usuario.setUsername(name);
+                usuario.setPassword(passwordEncoder().encode("1"));
+                if (usuario.getEmail().equals("comuntiro75@gmail.com")) {
+                    usuario.setRol("ADMIN");
+                }else {
+                    usuario.setRol("USER");
+                }
+                usuarioRepository.save(usuario);
+            }
+            response.sendRedirect("/home.html");
+        };
+    }
+
 
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http, PasswordEncoder passwordEncoder) throws Exception {
