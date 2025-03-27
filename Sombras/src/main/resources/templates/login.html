@@ -196,27 +196,28 @@
 
 
 <script>
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    const switchToRegister = document.getElementById('switchToRegister');
-    const switchToLogin = document.getElementById('switchToLogin');
+    $(document).ready(function () {
+        const loginForm = $("#loginForm");
+        const registerForm = $("#registerForm");
 
+        $("#switchToRegister").click(function (event) {
+            event.preventDefault();
+            loginForm.fadeOut(300, function () {
+                registerForm.css({ transform: "scale(0.8)", opacity: 0 }).show();
+                registerForm.animate({ transform: "scale(1)", opacity: 1 }, 300);
+            });
+        });
 
-
-    // Alternar al formulario de registro
-    switchToRegister.addEventListener('click', (event) => {
-        event.preventDefault();
-        loginForm.classList.add('hide');
-        registerForm.classList.remove('hide');
-    });
-
-    // Alternar al formulario de login
-    switchToLogin.addEventListener('click', (event) => {
-        event.preventDefault();
-        registerForm.classList.add('hide');
-        loginForm.classList.remove('hide');
+        $("#switchToLogin").click(function (event) {
+            event.preventDefault();
+            registerForm.fadeOut(300, function () {
+                loginForm.css({ transform: "scale(0.8)", opacity: 0 }).show();
+                loginForm.animate({ transform: "scale(1)", opacity: 1 }, 300);
+            });
+        });
     });
 </script>
+
 <script>
     document.querySelector('#registerForm form').addEventListener('submit', async function(event) {
         event.preventDefault(); // Evita el envío tradicional del formulario
