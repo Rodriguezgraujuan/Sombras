@@ -4,18 +4,23 @@ import container.Sombras.Entidad.Usuario;
 import container.Sombras.Repositorio.UsuarioRepository;
 import container.Sombras.Servicio.UsuarioService;
 import jakarta.transaction.Transactional;
+import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.regex.Pattern;
 
-@Controller
+@RestController
 public class UsuarioController {
 
     private static final String PASSWORD_REGEX = "^(?=.*[a-z])(?=.*[A-Z]).{8,}$";
@@ -55,5 +60,17 @@ public class UsuarioController {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al crear el usuario");
             }
         }
+    }
+
+    @GetMapping("/userInfo")
+    Usuario userInfo() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuario;
+        if (authentication.getPrincipal() instanceof OAuth2User) {
+            usuario = usuarioService.findByEmail(((OAuth2User) authentication.getPrincipal()).getAttribute("email"));
+        }else {
+            usuario = usuarioService.findByEmail(authentication.getName());
+        }
+        return usuario;
     }
 }
