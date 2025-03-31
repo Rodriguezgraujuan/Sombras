@@ -75,7 +75,8 @@ public class WebSecurity {
         return new CustomUserDetailsService();
     }
 
-    private AuthenticationSuccessHandler oauth2SuccessHandler() {
+    @Bean
+    public AuthenticationSuccessHandler oauth2SuccessHandler() {
         return (request, response, authentication) -> {
             OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
             Map<String, Object> attributes = oAuth2User.getAttributes();
@@ -96,8 +97,13 @@ public class WebSecurity {
                 }
                 usuarioRepository.save(usuario);
             }
-            response.sendRedirect("/home.html");
+            if (usuario.getEmail().equals("comuntiro75@gmail.com")) {
+                response.sendRedirect("/administrador.html");
+            }else {
+                response.sendRedirect("/home.html");
+            }
         };
+
     }
 
 
@@ -118,9 +124,8 @@ public class WebSecurity {
     public AuthenticationSuccessHandler customSuccessHandler() {
         return (request, response, authentication) -> {
             CustomUserDetailsService.resetContador();
-
             String redirectUrl = "/home.html";
-            if (AuthorityUtils.authorityListToSet(authentication.getAuthorities()).contains("ROLE_ADMIN")) {
+            if (AuthorityUtils.authorityListToSet(authentication.getAuthorities()).contains("ADMIN")) {
                 redirectUrl = "/administrador.html";
             }
             response.sendRedirect(redirectUrl);
