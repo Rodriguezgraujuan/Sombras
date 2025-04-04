@@ -25,6 +25,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.time.LocalDate;
 import java.util.Map;
 
 @Configuration
@@ -90,6 +91,7 @@ public class WebSecurity {
                 usuario.setEmail(email);
                 usuario.setUsername(name);
                 usuario.setPassword(passwordEncoder().encode("1"));
+                usuario.setStartDate(LocalDate.now().getYear()+" "+LocalDate.now().getMonth());
                 if (usuario.getEmail().equals("comuntiro75@gmail.com")) {
                     usuario.setRol("ADMIN");
                 }else {

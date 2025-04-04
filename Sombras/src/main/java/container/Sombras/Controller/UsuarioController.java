@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 @RestController
@@ -30,11 +31,6 @@ public class UsuarioController {
     private UsuarioService usuarioService;
     @Autowired
     private PasswordEncoder passwordEncoder;
-
-    @GetMapping("/login")
-    public String loginPage() {
-        return "login";
-    }
 
     @PostMapping("/register")
     @Transactional
@@ -50,6 +46,7 @@ public class UsuarioController {
                 user.setRol("USER");
                 if (pattern.matcher(user.getPassword()).matches()) {
                     user.setPassword(passwordEncoder.encode(user.getPassword()));
+                    user.setStartDate(LocalDate.now().getYear()+" "+LocalDate.now().getMonth());
                     usuarioService.save(user);
 
                     return ResponseEntity.status(HttpStatus.CREATED).body("Usuario creado con éxito");

@@ -31,6 +31,9 @@ public class Usuario {
     @Column(name="rol")
     private String rol;
 
+    @Column(name="startDate")
+    private String startDate;
+
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Usuario_Personaje> usuarioPersonajes = new HashSet<>();
 
@@ -97,5 +100,13 @@ public class Usuario {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
 }

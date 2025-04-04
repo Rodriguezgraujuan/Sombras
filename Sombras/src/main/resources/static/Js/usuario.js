@@ -8,5 +8,7 @@ $(document).ready(function () {
 });
 
 function renderUserInfo(data) {
-    $('#name').html(`<i class="bi bi-envelope"></i> ${data.email}`);
+    $('#username').text(`${data.username}`)
+    $('#email').html(`<i class="bi bi-envelope"></i> ${data.email}`);
+    $('#startD').html(`<i class="bi bi-calendar-check"></i> Miembro desde: ${data.startDate}`)
 }
