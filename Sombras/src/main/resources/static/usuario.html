@@ -12,6 +12,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
     />
+
     <link rel="stylesheet" href="Css/styles.css" />
     <link rel="stylesheet" href="Css/game.css">
     <link rel="stylesheet" href="Css/usuario.css">
@@ -61,31 +62,25 @@
     <div class="container mt-5 mb-5 text-white">
         <div class="row justify-content-center">
           <div class="col-md-8 col-lg-6 text-center p-4 shadow-lg rounded" style="background: rgba(0, 0, 0, 0.8); border: 2px solid #d6a35d;">
-            <div class="position-relative">
-              <img src="./images/avatar.png" class="rounded-circle border border-3 border-warning" width="150" alt="Foto de perfil" />
-              <button class="btn btn-sm btn-warning position-absolute top-0 start-100 translate-middle rounded-circle p-2" title="Cambiar foto de perfil" id="changeIMG">
-                <i class="bi bi-pencil"></i>
-              </button>
-            </div>
             <h2 class="mt-3" id="username"></h2>
             <p id="email"><i class="bi bi-envelope"></i></p>
             <p id="startD"><i class="bi bi-calendar-check"></i> Miembro desde: </p>
             <div class="d-flex justify-content-center gap-3">
-              <button class="btn-medieval">Editar Perfil</button>
-              <button class="btn-medieval btn-danger">Cerrar Sesión</button>
+              <a class="btn-medieval text-decoration-none">Editar Perfil</a>
+              <a class="btn-medieval btn-danger text-decoration-none" href="/logout">Cerrar Sesión</a>
             </div>
             <hr class="mt-4" />
-            <h4 class="mt-3">Historial de compras</h4>
+            <h4 class="mt-3">Historial de Personajes</h4>
             <ul class="list-group text-dark">
-              <li class="list-group-item">Sombras detrás del Trono - Edición Deluxe</li>
-              <li class="list-group-item">Pack de cartas - Expansión 1</li>
-              <li class="list-group-item">Miniaturas exclusivas</li>
+              <li class="list-group-item">Ragnar-Publico</li>
+              <li class="list-group-item">WacNar-Privado</li>
+              <li class="list-group-item">Tu-Tonto</li>
             </ul>
             <hr class="mt-4" />
             <h4 class="mt-3">Configuración</h4>
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="darkModeSwitch">
-              <label class="form-check-label" for="darkModeSwitch">Modo oscuro</label>
+              <input class="form-check-input" type="checkbox" id="toggleTheme">
+              <label class="form-check-label" for="toggleTheme">Modo oscuro</label>
             </div>
           </div>
         </div>

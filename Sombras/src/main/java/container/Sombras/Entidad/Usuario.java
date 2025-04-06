@@ -25,9 +25,6 @@ public class Usuario {
     @Column(name="password")
     private String password;
 
-    @Column(name="imagen")
-    private String imagen;
-
     @Column(name="rol")
     private String rol;
 
@@ -66,10 +63,6 @@ public class Usuario {
         return email;
     }
 
-    public String getImagen() {
-        return imagen;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -88,10 +81,6 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
     }
 
     public void setPassword(String passwod) {

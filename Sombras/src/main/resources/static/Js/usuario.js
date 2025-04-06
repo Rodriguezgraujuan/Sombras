@@ -11,4 +11,7 @@ function renderUserInfo(data) {
     $('#username').text(`${data.username}`)
     $('#email').html(`<i class="bi bi-envelope"></i> ${data.email}`);
     $('#startD').html(`<i class="bi bi-calendar-check"></i> Miembro desde: ${data.startDate}`)
+    if (data.imagen) {
+        document.getElementById('userImage').src = `/imagen`;
+    }
 }
