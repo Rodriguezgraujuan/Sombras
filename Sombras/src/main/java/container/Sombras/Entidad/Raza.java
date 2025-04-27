@@ -1,5 +1,6 @@
 package container.Sombras.Entidad;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -22,14 +23,17 @@ public class Raza {
     @Column(name = "velocity")
     private int velocity;
 
+    @JsonIgnore
     @Column(name = "hability")
     @OneToMany(mappedBy = "raza", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Raza_Habilidad> hability;
 
+    @JsonIgnore
     @Column(name = "atributo")
     @OneToMany(mappedBy = "raza", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Raza_Atributo> atributoRaza = new HashSet<>();
 
+    @JsonIgnore
     @Column(name = "personaje")
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "raza", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Personaje> personaje = new HashSet<>();

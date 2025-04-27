@@ -29,3 +29,29 @@
     color: #e0c097;
     font-family: 'Uncial Antiqua', serif;
   }
+
+.card-personaje {
+  background-color: #1f1f1f;
+  border: 1px solid #444;
+  color: #fff;
+  transition: transform 0.2s;
+}
+
+.card-personaje:hover {
+  transform: scale(1.03);
+}
+
+.card-personaje img {
+  object-fit: cover;
+  height: 200px;
+}
+
+.showChareacters{
+  background-color: #1c1c1c;
+}
+
+.nav-link.active {
+  background-color: #007bff;
+  color: black;
+  border-radius: 5px;
+}
