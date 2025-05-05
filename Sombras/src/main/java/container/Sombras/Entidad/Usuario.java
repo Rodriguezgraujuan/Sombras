@@ -5,7 +5,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -32,7 +34,7 @@ public class Usuario {
     private String startDate;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Usuario_Personaje> usuarioPersonajes = new HashSet<>();
+    private List<Personaje> personajes = new ArrayList<>();
 
     public Usuario(String username, String email, String passwod, String rol) {
         this.username = username;
@@ -51,9 +53,6 @@ public class Usuario {
         this.rol = rol;
     }
 
-    public Set<Usuario_Personaje> getUsuarioPersonajes() {
-        return usuarioPersonajes;
-    }
 
     public long getId() {
         return id;
@@ -75,9 +74,6 @@ public class Usuario {
         this.id = id;
     }
 
-    public void setUsuarioPersonajes(Set<Usuario_Personaje> usuarioPersonajes) {
-        this.usuarioPersonajes = usuarioPersonajes;
-    }
 
     public void setEmail(String email) {
         this.email = email;
@@ -97,5 +93,13 @@ public class Usuario {
 
     public void setStartDate(String startDate) {
         this.startDate = startDate;
+    }
+
+    public List<Personaje> getPersonajes() {
+        return personajes;
+    }
+
+    public void setPersonajes(List<Personaje> personajes) {
+        this.personajes = personajes;
     }
 }

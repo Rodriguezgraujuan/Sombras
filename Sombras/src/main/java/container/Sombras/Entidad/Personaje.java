@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -52,12 +54,15 @@ public class Personaje {
     @JoinColumn(name = "clase_id", nullable = false)
     private Clase clase;
 
-
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "raza_id", nullable = false)
     private Raza raza;
 
-    public Personaje(String nombre, String apellido, Clase clase, Raza raza, String descripcion, String imagen, int nivel) {
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
+
+    public Personaje(String nombre, String apellido, Clase clase, Raza raza, String descripcion, String imagen, int nivel, Usuario usuario) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.descripcion = descripcion;
@@ -65,9 +70,10 @@ public class Personaje {
         this.raza = raza;
         this.imagen = imagen;
         this.nivel = nivel;
+        this.usuario = usuario;
     }
 
-    public Personaje(boolean publico,String nombre, String apellido, Clase clase, Raza raza, String descripcion, String imagen, int nivel, int destreza, int constitucion, int inteligencia, int fuerza, int sabiduria) {
+    public Personaje(boolean publico,String nombre, String apellido, Clase clase, Raza raza, String descripcion, String imagen, int nivel, int destreza, int constitucion, int inteligencia, int fuerza, int sabiduria, Usuario usuario) {
         pulico = publico;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -81,6 +87,7 @@ public class Personaje {
         this.inteligencia = inteligencia;
         this.fuerza = fuerza;
         this.sabiduria = sabiduria;
+        this.usuario = usuario;
     }
 
     public Personaje() {}
@@ -196,5 +203,13 @@ public class Personaje {
 
     public void setSabiduria(int sabiduria) {
         this.sabiduria = sabiduria;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
