@@ -1,6 +1,8 @@
 package container.Sombras.Controller;
 
+import container.Sombras.Entidad.Clase;
 import container.Sombras.Entidad.Personaje;
+import container.Sombras.Entidad.Raza;
 import container.Sombras.Entidad.Usuario;
 import container.Sombras.Repositorio.Raza_AtributoRepository;
 import container.Sombras.Servicio.*;
@@ -93,7 +95,6 @@ public class PersonajeController {
         return lista;
     }
 
-    @Transactional
     @PostMapping("/deleteCharacter")
     public void deleteCharacter(@RequestBody Personaje personajeRequest) {
         Usuario usuario = obtenerUsuarioAutenticado();
@@ -102,8 +103,19 @@ public class PersonajeController {
         if (personaje.getUsuario().getId()!=usuario.getId()) {
             throw new IllegalArgumentException("El personaje no es del usuario.");
         }
+        Clase clase = personaje.getClase();
+        Raza raza = personaje.getRaza();
+
+        if (clase != null) {
+            clase.getPersonajes().remove(personaje);
+        }
+
+        if (raza != null) {
+            raza.getPersonaje().remove(personaje);
+        }
 
         personajeService.delete(personaje);
+
     }
 
     @GetMapping("/personajeData")
@@ -128,14 +140,12 @@ public class PersonajeController {
             case "Gnomo" -> 4;
             default -> 0;
         };
-
-        int puntosRestantes = (personajeRequest.getNivel() * 2) - (
+        int puntosRestantes = (personaje.getNivel() * 2 + puntosBase) - (
                 personajeRequest.getConstitucion() +
                         personajeRequest.getFuerza() +
                         personajeRequest.getDestreza() +
                         personajeRequest.getInteligencia() +
-                        personajeRequest.getSabiduria()
-        ) + puntosBase;
+                        personajeRequest.getSabiduria());
 
         if (puntosRestantes >= 0) {
             personaje.setConstitucion(personajeRequest.getConstitucion());
@@ -143,7 +153,7 @@ public class PersonajeController {
             personaje.setDestreza(personajeRequest.getDestreza());
             personaje.setInteligencia(personajeRequest.getInteligencia());
             personaje.setSabiduria(personajeRequest.getSabiduria());
-            personaje.setNivel(personajeRequest.getNivel());
+            personaje.setNivel(personaje.getNivel());
             personajeService.save(personaje);
         } else {
             throw new BadRequestException("Puntos de nivel inválidos.");

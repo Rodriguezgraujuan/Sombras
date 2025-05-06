@@ -35,7 +35,7 @@ public class Raza {
 
     @JsonIgnore
     @Column(name = "personaje")
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "raza", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "raza", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Personaje> personaje = new HashSet<>();
 
     public Raza() {}

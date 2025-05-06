@@ -46,6 +46,7 @@ $(document).ready(function () {
             data: JSON.stringify({id: id}),
             success: function () {
                 $('#eliminarPersonajeModal').modal('hide');
+                console.log("Personaje eliminado correctamente")
                 location.reload();
             },
             error: function (xhr) {
@@ -147,8 +148,8 @@ $(document).ready(function () {
               </button>
             </div>
           </div>
+          <div class="nivel-detalle mt-2" style="display:none;"></div>
         </div>
-            <div class="nivel-detalle mt-2" style="display:none;"></div>
       </div>
     `
                 });
@@ -173,7 +174,6 @@ $(document).ready(function () {
 
         const tipo = $(this).data('tipo');
 
-        // Cambiar pestaña activa visualmente
         $('.showChareacters').removeClass('active');
         $(this).addClass('active');
 
@@ -219,31 +219,77 @@ $(document).ready(function () {
 
     cargarMisPersonajes()
 
-    $('.card-personaje').on('click', function () {
+    $('#zonaPersonajes').on('click', '.card-personaje', function () {
         const card = $(this);
-        const personajeId = card.data('id');
+        const personajeId = card.closest('.personajeCard').find('.eliminarPersonaje').data('id');
         const detalle = card.closest('.personajeCard').find('.nivel-detalle');
 
         if (detalle.is(':visible')) {
-            detalle.slideUp();
+            //detalle.slideUp();
         } else {
             $.ajax({
-                url: `/personajeData`, type: 'GET', data: {personajeId: personajeId}, success: function (personaje) {
+                url: `/personajeData`,
+                type: 'GET',
+                data: {personajeId: personajeId},
+                success: function (personaje) {
+                    const valoresBase = {
+                        inteligencia: 0,
+                        fuerza: 0,
+                        destreza: 0,
+                        constitucion: 0,
+                        sabiduria: 0
+                    };
+
+                    const reglasPorRaza  = {
+                        "Humano": { bonificaciones:{ inteligencia: 1, fuerza: 1, destreza: 1, constitucion: 1, sabiduria: 1}, libres: 1},
+                        "Semielfo": { bonificaciones:{inteligencia: 0, fuerza: 0, destreza: 2, constitucion: 0, sabiduria: 0}, libres: 1 },
+                        "Gnomo": { bonificaciones: {inteligencia: 2, fuerza: 0, destreza: 1, constitucion: 1, sabiduria: 0}, libres:0},
+                        "Semiorco": {bonificaciones: {inteligencia: 0, fuerza: 2, destreza: 0, constitucion: 1, sabiduria: 0}, libres:0},
+                        "Enano": {bonificaciones: {inteligencia: 0, fuerza: 1, destreza: 0, constitucion: 2, sabiduria: 0}, libres:0},
+                        "Elfo": { bonificaciones: {inteligencia: 1, fuerza: 0, destreza: 2, constitucion: 1, sabiduria: 1}, libres:0},
+                    };
+
+                    const reglas = reglasPorRaza[personaje.raza.name] || { bonificaciones: {}, libres: 0 };
+                    const bonificaciones = reglas.bonificaciones;
+                    const puntosLibres = reglas.libres;
+
+                    for (let stat in valoresBase) {
+                        valoresBase[stat] = bonificaciones[stat] || 0;
+                    }
+
+
+
+                    const puntosAsignables = personaje.nivel * 2;
+                    const sumaBase = Object.values(valoresBase).reduce((a, b) => a + b, 0);
+                    let puntosDisponibles = puntosAsignables + puntosLibres - sumaBase;
+
                     let html = `
-  <form class="form-niveles" data-id="${personaje.id}">
-    <ul>
-      <li>Inteligencia: <input type="number" name="inteligencia" value="${personaje.inteligencia}" /></li>
-      <li>Fuerza: <input type="number" name="fuerza" value="${personaje.fuerza}" /></li>
-      <li>Destreza: <input type="number" name="destreza" value="${personaje.destreza}" /></li>
-      <li>Constitución: <input type="number" name="constitucion" value="${personaje.constitucion}" /></li>
-      <li>Sabiduría: <input type="number" name="sabiduria" value="${personaje.sabiduria}" /></li>
-    </ul>
-    <strong>Nivel total: ${personaje.nivel}</strong><br>
-    <button type="submit" class="btn btn-sm btn-success mt-2">Guardar Cambios</button>
-  </form>
-`;
+    <form class="form-niveles p-3 rounded" data-id="${personaje.id}">
+    `;
+
+                    for (let stat in valoresBase) {
+                        const valor = (personaje[stat] !== undefined) ? personaje[stat] : valoresBase[stat];
+                        html += `
+        <div class="nivel-campo">
+            <label for="${stat}-${personaje.id}">${stat.charAt(0).toUpperCase() + stat.slice(1)}:</label>
+            <input id="${stat}-${personaje.id}" type="number" name="${stat}" 
+                   value="${valor}" min="${valoresBase[stat]}" />
+        </div>
+        `;
+                    }
+
+                    html += `
+        <p class="mt-2 puntos-restantes"><strong>Puntos disponibles:</strong> (Nivel: ${personaje.nivel}, Extra: ${puntosLibres})</p>
+        <button type="submit" class="btn btn-success btn-sm mt-2">Guardar Cambios</button>
+    </form>`;
 
                     detalle.html(html).slideDown();
+                    actualizarPuntos(detalle, valoresBase, puntosAsignables, puntosLibres, sumaBase);
+                    actualizarPuntos(detalle, valoresBase, puntosAsignables, puntosLibres, sumaBase);
+                    detalle.on('input', 'input[type="number"]', function () {
+                        actualizarPuntos(detalle, valoresBase, puntosAsignables, puntosLibres, sumaBase);
+                    });
+
                     detalle.off('submit').on('submit', '.form-niveles', function (e) {
                         e.preventDefault();
                         const form = $(this);
@@ -264,7 +310,7 @@ $(document).ready(function () {
                             contentType: 'application/json',
                             data: JSON.stringify(updatedData),
                             success: function () {
-                                alert('Niveles actualizados correctamente');
+                                console.log('Niveles actualizados correctamente');
                                 detalle.slideUp();
                             },
                             error: function () {
@@ -273,12 +319,45 @@ $(document).ready(function () {
                         });
                     });
 
-                }, error: function () {
+                },
+                error: function () {
                     detalle.html('<p>Error al obtener niveles.</p>').slideDown();
                 }
             });
         }
+        $(document).on('click', function (e) {
+            if (!$(e.target).closest('.card-personaje').length) {
+                $('.nivel-detalle').slideUp();
+            }
+        });
     });
+
+    function actualizarPuntos(detalle, valoresBase, puntosAsignables, puntosLibres, sumaBase) {
+        const inputs = detalle.find('input[type="number"]');
+        let suma = 0;
+
+        inputs.each(function () {
+            suma += parseInt($(this).val(), 10) || 0;
+        });
+
+        let usados = suma - sumaBase;
+        let disponibles = puntosAsignables + puntosLibres - usados;
+        console.log(puntosAsignables, puntosLibres, usados, disponibles)
+
+        detalle.find('.puntos-restantes strong').text(`Puntos disponibles: ${Math.max(0, disponibles)}`);
+
+        inputs.each(function () {
+            const name = $(this).attr('name');
+            const base = valoresBase[name];
+            const actual = parseInt($(this).val(), 10) || 0;
+            const maxPermitido = base + disponibles + (actual - base);
+            $(this).attr('max', maxPermitido);
+            if (actual < base) {
+                $(this).val(base);
+            }
+        });
+    }
+
 
 
 });

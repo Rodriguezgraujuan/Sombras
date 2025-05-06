@@ -1,5 +1,6 @@
 package container.Sombras.Entidad;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -50,16 +51,17 @@ public class Personaje {
     @Column(name = "sabiduria")
     private int sabiduria;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "clase_id", nullable = false)
     private Clase clase;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "raza_id", nullable = false)
     private Raza raza;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
+    @JsonIgnore
     private Usuario usuario;
 
     public Personaje(String nombre, String apellido, Clase clase, Raza raza, String descripcion, String imagen, int nivel, Usuario usuario) {

@@ -61,3 +61,55 @@
   color: black;
   border-radius: 5px;
 }
+
+.nivel-detalle {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border-radius: 8px;
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 0.85rem;
+}
+
+.form-niveles {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nivel-campo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.nivel-campo label {
+  flex: 1;
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: 'Georgia', serif;
+}
+
+.nivel-campo input {
+  width: 60px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 0.85rem;
+  padding: 2px 5px;
+  text-align: center;
+}
+
+.nivel-campo input:focus {
+  outline: none;
+  border-color: #6fbf73;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.form-niveles button {
+  align-self: flex-end;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+}
