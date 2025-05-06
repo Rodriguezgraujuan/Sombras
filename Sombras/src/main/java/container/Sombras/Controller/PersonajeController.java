@@ -106,9 +106,14 @@ public class PersonajeController {
         personajeService.delete(personaje);
     }
 
+    @GetMapping("/personajeData")
+    public Personaje getCharacterLevel(@RequestParam Long personajeId) {
+        return personajeService.findById(personajeId);
+    }
+
     @Transactional
     @PostMapping("/editLevels")
-    public void getCharacterLevels(@RequestBody Personaje personajeRequest) throws BadRequestException {
+    public void postCharacterLevels(@RequestBody Personaje personajeRequest) throws BadRequestException {
         Usuario usuario = obtenerUsuarioAutenticado();
         Personaje personaje = personajeService.findById(personajeRequest.getId());
 

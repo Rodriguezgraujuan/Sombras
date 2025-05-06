@@ -107,7 +107,7 @@ $(document).ready(function () {
                 zona.innerHTML = "";
                 personajesTuyos.forEach(p => {
                     zona.innerHTML += `
-      <div class="col">
+      <div class="col personajeCard">
         <div class="card card-personaje h-100">
           <img src="${p.imagen}" class="card-img-top" alt="${p.nombre}">
           <div class="card-body d-flex flex-column">
@@ -120,6 +120,7 @@ $(document).ready(function () {
             </div>
           </div>
         </div>
+            <div class="nivel-detalle mt-2" style="display:none;"></div>
       </div>
     `
                 });
@@ -195,5 +196,38 @@ $(document).ready(function () {
         });
     }
     cargarMisPersonajes()
+
+    $('.card-personaje').on('click', function () {
+        const card = $(this);
+        const personajeId = card.data('id');
+        const detalle = card.closest('.personajeCard').find('.nivel-detalle');
+
+        if (detalle.is(':visible')) {
+            detalle.slideUp();
+        } else {
+            $.ajax({
+                url: `/personajeData`,
+                type: 'GET',
+                data: { personajeId: personajeId },
+                success: function (personaje) {
+                    let html = '<ul>';
+                    let total = personaje.nivel;
+                    html += `<li>$"Inteligencia": ${personaje.inteligencia}</li>`;
+                    html += `<li>$"Fuerza": ${personaje.fuerza}</li>`;
+                    html += `<li>$"Destreza": ${personaje.destreza}</li>`;
+                    html += `<li>$"Constitucion": ${personaje.constitucion}</li>`;
+                    html += `<li>$"Sabiduria": ${personaje.sabiduria}</li>`;
+
+
+                    html += `</ul><strong>Total: ${total}</strong>`;
+                    detalle.html(html).slideDown();
+                },
+                error: function () {
+                    detalle.html('<p>Error al obtener niveles.</p>').slideDown();
+                }
+            });
+        }
+    });
+
 });
 
