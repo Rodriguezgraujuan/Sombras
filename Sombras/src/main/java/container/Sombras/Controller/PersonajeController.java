@@ -50,7 +50,7 @@ public class PersonajeController {
                 personaje.getNivel(),
                 usuario
         );
-        newPersonaje.setUsuario(usuario); // Asociar al usuario
+        newPersonaje.setUsuario(usuario);
         personajeService.save(newPersonaje);
     }
 
@@ -123,11 +123,9 @@ public class PersonajeController {
 
         int puntosBase = switch (personaje.getRaza().getName()) {
             case "Humano" -> 6;
-            case "Semielfo" -> 3;
+            case "Semielfo", "Siemorco", "Enano" -> 3;
             case "Elfo" -> 5;
             case "Gnomo" -> 4;
-            case "Siemorco" -> 3;
-            case "Enano" -> 3;
             default -> 0;
         };
 
