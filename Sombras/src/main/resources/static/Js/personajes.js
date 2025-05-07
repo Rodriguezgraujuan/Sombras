@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    let tipoPersonajeActual = 'tuyos'; // valor por defecto
     $('#crearPersonaje').on('click', function () {
 
         $.get("/razas")
@@ -137,13 +138,13 @@ $(document).ready(function () {
                 personajesTuyos.forEach(p => {
                     zona.innerHTML += `
       <div class="col personajeCard">
-        <div class="card card-personaje h-100">
+        <div class="card card-personaje" data-id="${p.id}">
           <img src="${p.imagen}" class="card-img-top" alt="${p.nombre}">
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">${p.nombre}</h5>
             <div class="d-flex justify-content-between align-items-center mt-2">
               <p class="card-text mb-0">${p.clase}</p>
-              <button class="btn btn-sm btn-danger eliminarPersonaje" data-id="${p.id}">
+              <button class="btn btn-sm btn-danger eliminarPersonaje">
                 <i class="bi bi-trash3"> ELIMINAR</i>
               </button>
             </div>
@@ -172,13 +173,12 @@ $(document).ready(function () {
     $('#personajesTabs').on('click', '.showChareacters', function (e) {
         e.preventDefault();
 
-        const tipo = $(this).data('tipo');
+        tipoPersonajeActual = $(this).data('tipo'); // Guardamos el tipo actual
 
         $('.showChareacters').removeClass('active');
         $(this).addClass('active');
 
-        // Cargar personajes según tipo
-        mostrarPersonajes(tipo);
+        mostrarPersonajes(tipoPersonajeActual);
     });
 
     function cargarOtrosPersonajes() {
@@ -197,18 +197,19 @@ $(document).ready(function () {
                 zona.innerHTML = "";
                 personajesOtros.forEach(p => {
                     zona.innerHTML += `
-      <div class="col">
-        <div class="card card-personaje h-100">
-          <img src="${p.imagen}" class="card-img-top" alt="${p.nombre}">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">${p.nombre}</h5>
-            <div class="d-flex justify-content-between align-items-center mt-2">
-              <p class="card-text mb-0">${p.clase}</p>
-            </div>
-          </div>
+  <div class="col personajeCard">
+    <div class="card card-personaje" data-id="${p.id}">
+      <img src="${p.imagen}" class="card-img-top" alt="${p.nombre}">
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">${p.nombre}</h5>
+        <div class="d-flex justify-content-between align-items-center mt-2">
+          <p class="card-text mb-0">${p.clase}</p>
         </div>
       </div>
-    `
+      <div class="nivel-detalle mt-2" style="display:none;"></div>
+    </div>
+  </div>
+`;
                 });
 
             }, error: function (xhr, status, error) {
@@ -219,10 +220,11 @@ $(document).ready(function () {
 
     cargarMisPersonajes()
 
-    $('#zonaPersonajes').on('click', '.card-personaje', function () {
+    $('#zonaPersonajes').on('click', '.card-personaje', function (e) {
+        e.stopPropagation()
         const card = $(this);
-        const personajeId = card.closest('.personajeCard').find('.eliminarPersonaje').data('id');
-        const detalle = card.closest('.personajeCard').find('.nivel-detalle');
+        const personajeId = card.data('id');
+        const detalle = card.find('.nivel-detalle');
 
         if (detalle.is(':visible')) {
             //detalle.slideUp();
@@ -273,14 +275,14 @@ $(document).ready(function () {
         <div class="nivel-campo">
             <label for="${stat}-${personaje.id}">${stat.charAt(0).toUpperCase() + stat.slice(1)}:</label>
             <input id="${stat}-${personaje.id}" type="number" name="${stat}" 
-                   value="${valor}" min="${valoresBase[stat]}" />
+                   value="${valor}" min="${valoresBase[stat]}" ${tipoPersonajeActual === 'otros' ? 'disabled' : ''}/>
         </div>
         `;
                     }
 
                     html += `
         <p class="mt-2 puntos-restantes"><strong>Puntos disponibles:</strong> (Nivel: ${personaje.nivel}, Extra: ${puntosLibres})</p>
-        <button type="submit" class="btn btn-success btn-sm mt-2">Guardar Cambios</button>
+        <button type="submit" class="btn btn-success btn-sm mt-2" ${tipoPersonajeActual === 'tuyos' ? `` : ''}>Guardar</button>
     </form>`;
 
                     detalle.html(html).slideDown();

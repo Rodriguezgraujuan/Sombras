@@ -1,3 +1,7 @@
 .list-group-item{
     background: #d17e1f;
 }
+
+#historialPersonajes{
+    max-height: 400px;
+}

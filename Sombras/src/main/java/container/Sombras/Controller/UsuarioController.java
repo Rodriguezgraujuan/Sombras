@@ -1,5 +1,6 @@
 package container.Sombras.Controller;
 
+import container.Sombras.Entidad.Personaje;
 import container.Sombras.Entidad.Usuario;
 import container.Sombras.Repositorio.UsuarioRepository;
 import container.Sombras.Servicio.UsuarioService;
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.regex.Pattern;
 
 @RestController

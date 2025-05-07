@@ -36,11 +36,16 @@
     font-family: 'Uncial Antiqua', serif;
   }
 
+  .personajeCard{
+    margin-bottom: 20px;
+  }
+
 .card-personaje {
   background-color: #1f1f1f;
   border: 1px solid #444;
   color: #fff;
   transition: transform 0.2s;
+  max-width: 300px;
 }
 
 .card-personaje:hover {

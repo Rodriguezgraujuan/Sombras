@@ -2,6 +2,11 @@ $(document).ready(function () {
     $.get("/userInfo", function (data) {
         console.log(data);
         renderUserInfo(data);
+        $("#historialPersonajes").empty();
+        data.personajes.forEach(personaje =>{
+            $("#historialPersonajes").append(`<li class="list-group-item"><a>${personaje.nombre}-${personaje.public ? 'Público' : 'Privado'}</a></li>`);
+        })
+
     }).fail(function (error) {
         alert(`Error: ${error.statusText}`);
     });
