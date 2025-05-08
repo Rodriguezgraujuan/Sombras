@@ -20,6 +20,13 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
+      - name: Set environment variables
+        run : |
+          echo "SPRING_DATASOURCE_URL=${{ secrets.DB_URL }}" | sudo tee -a /etc/environment
+          echo "SPRING_DATASOURCE_USERNAME=${{ secrets.DB_USERNAME }}" | sudo tee -a /etc/environment
+          echo "SPRING_DATASOURCE_PASSWORD=${{ secrets.DB_PASSWORD }}" | sudo tee -a /etc/environment
+
+
       - name: Build with Maven
         working-directory: Sombras
         run: mvn clean package -DskipTests
