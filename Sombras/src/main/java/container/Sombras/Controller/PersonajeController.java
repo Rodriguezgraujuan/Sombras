@@ -52,6 +52,7 @@ public class PersonajeController {
                 personaje.getNivel(),
                 usuario
         );
+        newPersonaje.setPulico(personaje.isPulico());
         newPersonaje.setUsuario(usuario);
         personajeService.save(newPersonaje);
     }
@@ -67,6 +68,7 @@ public class PersonajeController {
             datos.add(personaje.getNombre());
             datos.add(personaje.getClase().getNombre());
             datos.add(personaje.getImagen());
+            datos.add(String.valueOf(personaje.isPulico()));
             lista.add(datos);
         }
 

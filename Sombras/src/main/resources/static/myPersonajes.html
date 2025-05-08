@@ -126,6 +126,15 @@
                   <label for="description" class="form-label">Descripcion</label>
                   <textarea class="form-control" id="description"></textarea>
                 </div>
+                <div class="mb-3">
+                  <label for="visibilidadPersonaje" class="form-label">Visibilidad</label>
+                  <select class="form-select" id="visibilidadPersonaje" required>
+                    <option selected disabled>Selecciona visibilidad</option>
+                    <option value="true">Público</option>
+                    <option value="false">Privado</option>
+                  </select>
+                  <div class="text-danger small error-msg" id="error-visibilidad"></div>
+                </div>
               </form>
 
             </div>

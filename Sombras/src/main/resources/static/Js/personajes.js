@@ -66,6 +66,7 @@ $(document).ready(function () {
         const nivel = parseInt($('#level').val(), 10);
         const clase = $('#clasePersonaje').val();
         const raza = $('#razaPersonaje').val();
+        const publico = $("#visibilidadPersonaje").value === "true";
 
         let isValid = true;
 
@@ -97,12 +98,13 @@ $(document).ready(function () {
         if (!isValid) return;
 
         const personaje = {
-            nombre: $("#nombrePersonaje").val(),
-            apellido: $("#apellidoPersonaje").val(),
-            nivel: parseInt($("#level").val()),
-            clase: {id: parseInt($("#clasePersonaje").val())},
-            raza: {id: parseInt($("#razaPersonaje").val())},
-            descripcion: $("#description").val()
+            nombre: nombre,
+            apellido: apellido,
+            nivel: nivel,
+            clase: clase,
+            raza: raza,
+            descripcion: $("#description").val(),
+            pulico: publico
         };
 
         $.ajax({
@@ -128,7 +130,7 @@ $(document).ready(function () {
                 console.log("Personajes recibidos:", data);
                 data.forEach(p => {
                     personajesTuyos.push({
-                        id: p[0], nombre: p[1], clase: p[2], imagen: p[3]
+                        id: p[0], nombre: p[1], clase: p[2], imagen: p[3], visibilidad: p[4]
                     });
                 });
 
@@ -137,22 +139,27 @@ $(document).ready(function () {
                 zona.innerHTML = "";
                 personajesTuyos.forEach(p => {
                     zona.innerHTML += `
-      <div class="col personajeCard">
-        <div class="card card-personaje" data-id="${p.id}">
-          <img src="${p.imagen}" class="card-img-top" alt="${p.nombre}">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">${p.nombre}</h5>
-            <div class="d-flex justify-content-between align-items-center mt-2">
-              <p class="card-text mb-0">${p.clase}</p>
-              <button class="btn btn-sm btn-danger eliminarPersonaje">
-                <i class="bi bi-trash3"> ELIMINAR</i>
-              </button>
-            </div>
-          </div>
-          <div class="nivel-detalle mt-2" style="display:none;"></div>
+  <div class="col personajeCard">
+    <div class="card card-personaje" data-id="${p.id}">
+      <img src="${p.imagen}" class="card-img-top" alt="${p.nombre}">
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title d-flex justify-content-between align-items-center">
+          ${p.nombre}
+          <span class="badge bg-${p.visibilidad ? 'success' : 'secondary'} rounded-pill small">
+            ${p.visibilidad ? 'Público' : 'Privado'}
+          </span>
+        </h5>
+        <div class="d-flex justify-content-between align-items-center mt-2">
+          <p class="card-text mb-0">${p.clase}</p>
+          <button class="btn btn-sm btn-danger eliminarPersonaje">
+            <i class="bi bi-trash3"> ELIMINAR</i>
+          </button>
         </div>
       </div>
-    `
+      <div class="nivel-detalle mt-2" style="display:none;"></div>
+    </div>
+  </div>
+`;
                 });
 
             }, error: function (xhr, status, error) {
