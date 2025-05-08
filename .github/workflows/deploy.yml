@@ -21,6 +21,7 @@ jobs:
           java-version: '21'
 
       - name: Build WAR with Maven
+        working-directory: Sombras/Sombras
         run: mvn clean package -DskipTests
 
       - name: Copy WAR to EC2 via SCP
