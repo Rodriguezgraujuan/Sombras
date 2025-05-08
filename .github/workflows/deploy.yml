@@ -20,6 +20,10 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
+      - name: Change directory to Maven project
+        run: cd Sombras
+
+
       - name: Build WAR with Maven
         run: mvn clean package -DskipTests
 
