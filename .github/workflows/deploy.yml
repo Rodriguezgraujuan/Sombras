@@ -3,7 +3,7 @@ name: Deploy to EC2 Tomcat
 on:
   push:
     branches:
-      - main  # o master, según tu caso
+      - master
 
 jobs:
   deploy:
