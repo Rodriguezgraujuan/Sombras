@@ -24,6 +24,10 @@ jobs:
         working-directory: Sombras
         run: mvn clean package -DskipTests
 
+      - name: Verify WAR file existence
+        run: |
+          ls -l Sombras/target
+
       - name: Copy WAR to EC2 via SCP
         uses: appleboy/scp-action@v0.1.4
         with:
