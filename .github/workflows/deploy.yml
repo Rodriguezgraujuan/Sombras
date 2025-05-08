@@ -19,6 +19,11 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
+      - name: Set environment variables
+        run: |
+            echo "SPRING_DATASOURCE_URL=${{ secrets.DB_URL }}" >> $GITHUB_ENV
+            echo "SPRING_DATASOURCE_USERNAME=${{ secrets.DB_USERNAME }}" >> $GITHUB_ENV
+            echo "SPRING_DATASOURCE_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
 
       - name: Build with Maven
         working-directory: Sombras
@@ -49,10 +54,12 @@ jobs:
           script: |
             sudo rm -r /var/lib/tomcat10/webapps/ROOT.war
             sudo rm -r /var/lib/tomcat10/webapps/ROOT
-            sudo mv /home/ubuntu/app.war/target/Sombras-0.0.1-SNAPSHOT.war /var/lib/tomcat10/webapps/ROOT.war
+            sudo mv /home/ubuntu/target/Sombras-0.0.1-SNAPSHOT.war /var/lib/tomcat10/webapps/ROOT.war
             sudo chown tomcat:tomcat /var/lib/tomcat10/webapps/ROOT.war
             sudo chmod 755 /var/lib/tomcat10/webapps/ROOT.war
-            echo "SPRING_DATASOURCE_URL=${{ secrets.DB_URL }}" | sudo tee -a /etc/environment
-            echo "SPRING_DATASOURCE_USERNAME=${{ secrets.DB_USERNAME }}" | sudo tee -a /etc/environment
-            echo "SPRING_DATASOURCE_PASSWORD=${{ secrets.DB_PASSWORD }}" | sudo tee -a /etc/environment
+            echo 'SPRING_DATASOURCE_URL=${{ secrets.DB_URL }}' | sudo tee /etc/default/tomcat10
+            echo 'SPRING_DATASOURCE_USERNAME=${{ secrets.DB_USERNAME }}' | sudo tee -a /etc/default/tomcat10
+            echo 'SPRING_DATASOURCE_PASSWORD=${{ secrets.DB_PASSWORD }}' | sudo tee -a /etc/default/tomcat10
+            sudo systemctl daemon-reexec
             sudo systemctl restart tomcat10
+
