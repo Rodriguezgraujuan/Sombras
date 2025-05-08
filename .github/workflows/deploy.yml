@@ -19,6 +19,11 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
+      - name: Set environment variables
+        run: |
+            echo "SPRING_DATASOURCE_URL=${{ secrets.DB_URL }}" >> $GITHUB_ENV
+            echo "SPRING_DATASOURCE_USERNAME=${{ secrets.DB_USERNAME }}" >> $GITHUB_ENV
+            echo "SPRING_DATASOURCE_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
 
       - name: Build with Maven
         working-directory: Sombras
