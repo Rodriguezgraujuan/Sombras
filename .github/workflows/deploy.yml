@@ -28,15 +28,26 @@ jobs:
         run: |
           ls -l Sombras/target
 
-      - name: Copy WAR to EC2 via SCP
+      - name: Upload WAR to EC2
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_KEY }}
+          port: 22
           source: Sombras/target/Sombras-0.0.1-SNAPSHOT.war
-          target: /var/lib/tomcat10/webapps/
-          strip_components: 0
+          target: /var/lib/tomcat10/webapps/app.war
+
+      - name: Rename WAR and cleanup old ROOT
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          port: 22
+          script: |
+            sudo rm -rf /var/lib/tomcat10/webapps/ROOT /var/lib/tomcat10/webapps/ROOT.war
+            sudo mv /var/lib/tomcat10/webapps/app.war /var/lib/tomcat10/webapps/ROOT.war
 
 
       - name: Restart Tomcat on EC2 via SSH
