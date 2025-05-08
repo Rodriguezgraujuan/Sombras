@@ -36,7 +36,7 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           port: 22
           source: Sombras/target/Sombras-0.0.1-SNAPSHOT.war
-          target: /home/${{ secrets.EC2_USER }}/app.war
+          target: /home/${{ secrets.EC2_USER }}/ROOT.war
           strip_components: 1
 
       - name: Move WAR to Tomcat and cleanup old ROOT
@@ -49,7 +49,7 @@ jobs:
           script: |
             sudo rm -r /var/lib/tomcat10/webapps/ROOT.war
             sudo rm -r /var/lib/tomcat10/webapps/ROOT
-            sudo mv /home/${{ secrets.EC2_USER }}/Sombras-0.0.1-SNAPSHOT.war /var/lib/tomcat10/webapps/ROOT.war
+            sudo mv /home/${{ secrets.EC2_USER }}/ROOT.war /var/lib/tomcat10/webapps/ROOT.war
             sudo chown tomcat:tomcat /var/lib/tomcat10/webapps/ROOT.war
             sudo chmod 755 /var/lib/tomcat10/webapps/ROOT.war
             sudo systemctl restart tomcat10
