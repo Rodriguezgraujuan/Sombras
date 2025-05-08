@@ -20,7 +20,8 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Build with Maven 
+      - name: Build with Maven
+        working-directory: Sombras
         run: mvn clean package -DskipTests
 
       - name: Verify WAR file existence
