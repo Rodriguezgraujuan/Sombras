@@ -3,7 +3,7 @@ name: Deploy to EC2 Tomcat
 on:
   push:
     branches:
-      - master
+      - main  # o master si es tu rama principal
 
 jobs:
   deploy:
@@ -20,12 +20,10 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Change directory to Maven project
-        run: cd Sombras
-
-
       - name: Build WAR with Maven
-        run: mvn clean package -DskipTests
+        run: |
+          cd Sombras
+          mvn clean package -DskipTests
 
       - name: Copy WAR to EC2 via SCP
         uses: appleboy/scp-action@v0.1.4
@@ -33,7 +31,7 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_KEY }}
-          source: target/ROOT.war
+          source: Sombras/target/ROOT.war
           target: ${{ secrets.EC2_WAR_DESTINATION }}
 
       - name: Restart Tomcat on EC2 via SSH
