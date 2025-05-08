@@ -63,6 +63,5 @@ jobs:
             echo 'SPRING_DATASOURCE_URL=${{ secrets.DB_URL }}' | sudo tee /etc/environment
             echo 'SPRING_DATASOURCE_USERNAME=${{ secrets.DB_USERNAME }}' | sudo tee -a /etc/environment
             echo 'SPRING_DATASOURCE_PASSWORD=${{ secrets.DB_PASSWORD }}' | sudo tee -a /etc/environment
-            sudo systemctl daemon-reexec
             sudo systemctl restart tomcat10
 
