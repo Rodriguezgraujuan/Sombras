@@ -36,9 +36,9 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           port: 22
           source: Sombras/target/Sombras-0.0.1-SNAPSHOT.war
-          target: /var/lib/tomcat10/webapps/app.war
+          target: /home/${{ secrets.EC2_USER }}/app.war
 
-      - name: Rename WAR and cleanup old ROOT
+      - name: Move WAR to webapps and cleanup old ROOT
         uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.EC2_HOST }}
@@ -47,7 +47,8 @@ jobs:
           port: 22
           script: |
             sudo rm -rf /var/lib/tomcat10/webapps/ROOT /var/lib/tomcat10/webapps/ROOT.war
-            sudo mv /var/lib/tomcat10/webapps/app.war /var/lib/tomcat10/webapps/ROOT.war
+            sudo mv /home/${{ secrets.EC2_USER }}/app.war /var/lib/tomcat10/webapps/ROOT.war
+
 
 
       - name: Restart Tomcat on EC2 via SSH
