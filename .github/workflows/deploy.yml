@@ -36,6 +36,7 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           source: Sombras/target/Sombras-0.0.1-SNAPSHOT.war
           target: /var/lib/tomcat10/webapps/ROOT.war
+          strip_components: 0
 
 
       - name: Restart Tomcat on EC2 via SSH
