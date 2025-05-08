@@ -20,13 +20,6 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Set environment variables
-        run : |
-          echo "SPRING_DATASOURCE_URL=${{ secrets.DB_URL }}" | sudo tee -a /etc/environment
-          echo "SPRING_DATASOURCE_USERNAME=${{ secrets.DB_USERNAME }}" | sudo tee -a /etc/environment
-          echo "SPRING_DATASOURCE_PASSWORD=${{ secrets.DB_PASSWORD }}" | sudo tee -a /etc/environment
-
-
       - name: Build with Maven
         working-directory: Sombras
         run: mvn clean package -DskipTests
@@ -59,4 +52,7 @@ jobs:
             sudo mv /home/ubuntu/app.war/target/Sombras-0.0.1-SNAPSHOT.war /var/lib/tomcat10/webapps/ROOT.war
             sudo chown tomcat:tomcat /var/lib/tomcat10/webapps/ROOT.war
             sudo chmod 755 /var/lib/tomcat10/webapps/ROOT.war
+            echo "SPRING_DATASOURCE_URL=${{ secrets.DB_URL }}" | sudo tee -a /etc/environment
+            echo "SPRING_DATASOURCE_USERNAME=${{ secrets.DB_USERNAME }}" | sudo tee -a /etc/environment
+            echo "SPRING_DATASOURCE_PASSWORD=${{ secrets.DB_PASSWORD }}" | sudo tee -a /etc/environment
             sudo systemctl restart tomcat10
