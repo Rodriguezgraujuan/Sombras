@@ -20,16 +20,15 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Build WAR with Maven
-        working-directory: Sombras
-        run: mvn clean package -DskipTests
+      - name: Build with Maven 
+        run: mvn -X clean package
 
       - name: Verify WAR file existence
         run: |
           ls -l Sombras/target
 
       - name: Upload WAR to EC2
-        uses: appleboy/scp-action@v0.1.4
+        uses: appleboy/scp-action@v0.1.5
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
@@ -37,18 +36,19 @@ jobs:
           port: 22
           source: Sombras/target/Sombras-0.0.1-SNAPSHOT.war
           target: /home/${{ secrets.EC2_USER }}/app.war
+          strip_components: 1
 
       - name: Move WAR to Tomcat and cleanup old ROOT
-        uses: appleboy/ssh-action@v0.1.10
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_KEY }}
           port: 22
           script: |
-            sudo systemctl stop tomcat10
-            sudo rm -rf /var/lib/tomcat10/webapps/ROOT /var/lib/tomcat10/webapps/ROOT.war
-            sudo mv /home/${{ secrets.EC2_USER }}/app.war /var/lib/tomcat10/webapps/ROOT.war
+            sudo rm -r /var/lib/tomcat10/webapps/ROOT.war
+            sudo rm -r /var/lib/tomcat10/webapps/ROOT
+            sudo mv /home/${{ secrets.EC2_USER }}/Sombras-0.0.1-SNAPSHOT.war /var/lib/tomcat10/webapps/ROOT.war
             sudo chown tomcat:tomcat /var/lib/tomcat10/webapps/ROOT.war
             sudo chmod 755 /var/lib/tomcat10/webapps/ROOT.war
-            sudo systemctl start tomcat10
+            sudo systemctl restart tomcat10
