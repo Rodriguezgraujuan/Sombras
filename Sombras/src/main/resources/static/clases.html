@@ -16,8 +16,11 @@
     <link rel="stylesheet" href="Css/game.css">
     <link rel="stylesheet" href="Css/guia.css">
     <link rel="stylesheet" href="Css/personajes.css">
+    <link rel="stylesheet" href="Css/razas.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="Js/clases.js"></script>
+    <script src="Js/clases.js" defer></script>
+    <script src="Js/detallesRazaClases.js" defer></script>
   </head>
   <body>
     <header id="header" class="shadow">
@@ -64,37 +67,24 @@
       <p class="text-center">
         Aquí puedes ver las clases y sus características.
       </p>
-    
-      <div class="row" id="cards">
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Guerreros</h5>
-              <button class="btn btn-custom w-100" onclick="mostrarInfo('guerrero')">Ver detalles</button>
+      <div class="container">
+        <div id="contenedor" class="row justify-content-center" style="min-height: 300px"></div>
+      </div>
+      <div id="info-clases" class="info-container"></div>
+      <div id="detalleModal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Detalles de clase</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-          </div>
-        </div>
-    
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Magos</h5>
-              <button class="btn btn-custom w-100" onclick="mostrarInfo('mago')">Ver detalles</button>
-            </div>
-          </div>
-        </div>
-    
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Druidas</h5>
-              <button class="btn btn-custom w-100" onclick="mostrarInfo('druida')">Ver detalles</button>
+            <div class="modal-body" id="modal-body-content">
+              <!-- contenido dinámico -->
             </div>
           </div>
         </div>
       </div>
-    
-      <div id="info-clases" class="info-container"></div>
+
     </div>
       <footer class="py-4 d-flex justify-content-center text-center">
         <div class="container">

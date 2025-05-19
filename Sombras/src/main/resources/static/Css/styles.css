@@ -16,6 +16,8 @@ body {
     background-size: cover;
     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
     border-bottom: 5px solid #8b5a2b;
+    image-rendering: auto;   /* Evita pixelación */
+
 }
 
 .navbar {

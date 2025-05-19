@@ -17,6 +17,9 @@ public class PersonajeService {
         return personajeRepository.findById(id).orElse(null);
     }
     public Personaje save(Personaje personaje){
+        if(personaje == null){
+            throw new IllegalArgumentException("El personaje no puede ser nulo");
+        }
         return personajeRepository.save(personaje);
     }
     public void delete(Personaje personaje){

@@ -1,5 +1,6 @@
 package container.Sombras.Controller;
 
+import container.Sombras.Dto.PersonajeDto;
 import container.Sombras.Entidad.Clase;
 import container.Sombras.Entidad.Personaje;
 import container.Sombras.Entidad.Raza;
@@ -8,7 +9,9 @@ import container.Sombras.Repositorio.Raza_AtributoRepository;
 import container.Sombras.Servicio.*;
 import jakarta.transaction.Transactional;
 import org.apache.coyote.BadRequestException;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -35,26 +38,28 @@ public class PersonajeController {
 
     @Transactional
     @PostMapping("/createCharacter")
-    public void createCharacter(@RequestBody Personaje personaje) {
+    public ResponseEntity<String> createCharacter(@RequestBody PersonajeDto personajeDto) {
+        System.out.println("Entró al método");
+        Personaje personaje = new Personaje();
         Usuario usuario = obtenerUsuarioAutenticado();
-
-        if (personaje.getNombre().isEmpty() || personaje.getApellido().isEmpty() || personaje.getNivel() < 0) {
+        if (personajeDto.getNombre().isEmpty() || personajeDto.getApellido().isEmpty() || personajeDto.getNivel() < 0) {
             throw new IllegalArgumentException("Nombre, Apellido o nivel no válido.");
         }
-
+        System.out.println(personajeDto.toString());
         Personaje newPersonaje = new Personaje(
-                personaje.getNombre(),
-                personaje.getApellido(),
-                claseService.findById(personaje.getClase().getId()),
-                razaService.findById(personaje.getRaza().getId()),
-                personaje.getDescripcion(),
+                personajeDto.getNombre(),
+                personajeDto.getApellido(),
+                claseService.findById(personajeDto.getClase()),
+                razaService.findById(personajeDto.getRaza()),
+                personajeDto.getDescripcion(),
                 "prueba",
-                personaje.getNivel(),
+                personajeDto.getNivel(),
                 usuario
         );
-        newPersonaje.setPulico(personaje.isPulico());
+        newPersonaje.setPulico(personajeDto.isPulico());
         newPersonaje.setUsuario(usuario);
         personajeService.save(newPersonaje);
+        return ResponseEntity.ok("Personaje creada correctamente");
     }
 
     @GetMapping("/showCharacter")
@@ -98,7 +103,7 @@ public class PersonajeController {
     }
 
     @PostMapping("/deleteCharacter")
-    public void deleteCharacter(@RequestBody Personaje personajeRequest) {
+    public ResponseEntity<String> deleteCharacter(@RequestBody Personaje personajeRequest) {
         Usuario usuario = obtenerUsuarioAutenticado();
         Personaje personaje = personajeService.findById(personajeRequest.getId());
 
@@ -118,6 +123,7 @@ public class PersonajeController {
 
         personajeService.delete(personaje);
 
+        return ResponseEntity.ok("Personaje eliminado correctamente");
     }
 
     @GetMapping("/personajeData")

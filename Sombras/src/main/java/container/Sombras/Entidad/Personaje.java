@@ -64,6 +64,12 @@ public class Personaje {
     @JsonIgnore
     private Usuario usuario;
 
+    public Personaje(String nombre, String apellido, int nivel){
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.nivel = nivel;
+    }
+
     public Personaje(String nombre, String apellido, Clase clase, Raza raza, String descripcion, String imagen, int nivel, Usuario usuario) {
         this.nombre = nombre;
         this.apellido = apellido;

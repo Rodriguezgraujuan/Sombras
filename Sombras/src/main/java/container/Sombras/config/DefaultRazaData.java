@@ -11,11 +11,13 @@ import container.Sombras.Servicio.RazaService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
 
 import java.util.*;
 
 @Configuration
+@Profile("!test")
 public class DefaultRazaData {
 
     @Bean

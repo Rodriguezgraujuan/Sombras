@@ -1,0 +1,42 @@
+.card {
+    height: 350px;
+    width: 100%; /* Que se adapte al col-md-4 */
+    max-width: 300px; /* Limita el ancho para centrar bien */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.btn-details {
+    margin-top: auto;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.btn-pergamino {
+    background: linear-gradient(to bottom, #e0a96d, #8b5e3c);
+    color: #fff;
+    border: none;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 6px;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+    transition: background 0.3s, transform 0.2s;
+    font-family: 'Georgia', serif;
+}
+
+.btn-pergamino:hover {
+    background: linear-gradient(to bottom, #d9965c, #754c2e);
+    transform: scale(1.03);
+}
+
+.btn-pergamino:active {
+    transform: scale(0.97);
+}

@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     let tipoPersonajeActual = 'tuyos'; // valor por defecto
     $('#crearPersonaje').on('click', function () {
 
@@ -24,37 +25,9 @@ $(document).ready(function () {
         $('#crearPersonajeModal').modal('show');
     });
 
-    $(document).on('click', '.eliminarPersonaje', function () {
-        const personajeId = $(this).data('id');
-        const personajeNombre = $(this).data('nombre');
 
-        $('#confirmarEliminar').data('id', personajeId);
-        $('#confirmarEliminar').data('nombre', personajeNombre);
 
-        $('#eliminarPersonajeModal').modal('show');
-    });
 
-    $('#confirmarEliminar').on('click', function () {
-        const id = $(this).data('id');
-        const nombre = $(this).data('nombre');
-
-        console.log("Eliminando personaje:", id, nombre);
-
-        $.ajax({
-            url: '/deleteCharacter',
-            method: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({id: id}),
-            success: function () {
-                $('#eliminarPersonajeModal').modal('hide');
-                console.log("Personaje eliminado correctamente")
-                location.reload();
-            },
-            error: function (xhr) {
-                console.error("Error al eliminar personaje:", xhr.responseText);
-            }
-        });
-    });
 
     $("#formCrearPersonaje").submit(function (event) {
         event.preventDefault();
@@ -151,7 +124,7 @@ $(document).ready(function () {
         </h5>
         <div class="d-flex justify-content-between align-items-center mt-2">
           <p class="card-text mb-0">${p.clase}</p>
-          <button class="btn btn-sm btn-danger eliminarPersonaje">
+          <button class="btn btn-sm btn-danger eliminarCharacter" data-id="${p.id}" data-nombre="${p.nombre}">
             <i class="bi bi-trash3"> ELIMINAR</i>
           </button>
         </div>
@@ -229,6 +202,7 @@ $(document).ready(function () {
 
     $('#zonaPersonajes').on('click', '.card-personaje', function (e) {
         e.stopPropagation()
+        if ($(e.target).closest('button').length > 0) return;
         const card = $(this);
         const personajeId = card.data('id');
         const detalle = card.find('.nivel-detalle');
@@ -366,8 +340,5 @@ $(document).ready(function () {
             }
         });
     }
-
-
-
 });
 
