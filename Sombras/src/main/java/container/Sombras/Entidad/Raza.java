@@ -23,6 +23,9 @@ public class Raza {
     @Column(name = "velocity")
     private int velocity;
 
+    @Column(name = "descripcion")
+    private String descripcion;
+
     @JsonIgnore
     @Column(name = "hability")
     @OneToMany(mappedBy = "raza", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -39,10 +42,11 @@ public class Raza {
     private Set<Personaje> personaje = new HashSet<>();
 
     public Raza() {}
-    public Raza(String name, double tall, int velocity) {
+    public Raza(String name, double tall, int velocity, String descripcion) {
         this.name = name;
         this.tall = tall;
         this.velocity = velocity;
+        this.descripcion = descripcion;
     }
 
     public void setId(Long id) {

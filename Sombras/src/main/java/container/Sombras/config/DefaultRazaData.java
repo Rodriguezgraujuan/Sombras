@@ -25,12 +25,12 @@ public class DefaultRazaData {
     CommandLineRunner initRazaData(RazaService razaService, ClaseService claseService, AtributoService atributoService, Raza_AtributoRepository raza_AtributoRepository, RazaRepository razaRepository, HabilidadService habilidadService, RazaHabilidadRepository razaHabilidadRepository) {
         return args -> {
             List<Raza> razasPorDefecto = new ArrayList<>();
-            razasPorDefecto.add(new Raza("Humano", 1.75, 25));
-            razasPorDefecto.add(new Raza("Elfo", 1.95, 30));
-            razasPorDefecto.add(new Raza("Semielfo", 1.80, 25));
-            razasPorDefecto.add(new Raza("Gnomo", 0.6, 15));
-            razasPorDefecto.add(new Raza("Semiorco", 2.8, 25));
-            razasPorDefecto.add(new Raza("Enano", 0.5, 15));
+            razasPorDefecto.add(new Raza("Humano", 1.75, 25, "descripcion"));
+            razasPorDefecto.add(new Raza("Elfo", 1.95, 30, "descripcion"));
+            razasPorDefecto.add(new Raza("Semielfo", 1.80, 25, "descripcion"));
+            razasPorDefecto.add(new Raza("Gnomo", 0.6, 15, "descripcion"));
+            razasPorDefecto.add(new Raza("Semiorco", 2.8, 25, "descripcion"));
+            razasPorDefecto.add(new Raza("Enano", 0.5, 15, "descripcion"));
 
             for (Raza raza : razasPorDefecto){
                 if (razaService.findByName(raza.getName())==null){

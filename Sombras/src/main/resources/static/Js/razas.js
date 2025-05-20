@@ -4,7 +4,9 @@ $(document).ready(function () {
             const html = `
         <div class="col-md-4 d-flex justify-content-center mb-4">
           <div class="card">
-            <div class="card-body d-flex flex-column">
+            <div class="card-body d-flex flex-column" 
+                 data-tipo="raza" 
+                 data-raza='${JSON.stringify(raza)}'>
               <h3 class="card-title">${raza.name}</h3>
               <p style="font-size: 12px;">Altura ${raza.tall} <br> Velocidad ${raza.velocity}</p>
               <button class="btn btn-pergamino btn-details">Más detalles</button>

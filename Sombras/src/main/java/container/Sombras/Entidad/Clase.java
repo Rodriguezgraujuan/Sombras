@@ -27,6 +27,9 @@ public class Clase {
     @Column(name = "lanzador")
     private String lanzador;
 
+    @Column(name = "descripcion")
+    private String descripcion;
+
     @JsonIgnore
     @OneToMany(mappedBy = "clase", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Conjuros> conjuros;
@@ -36,13 +39,14 @@ public class Clase {
     private Set<Personaje> personajes;
 
 
-    public Clase(String clase, String pGolpe, String lanzador, Set<Conjuros> conjuros) {
+    public Clase(String clase, String pGolpe, String lanzador, Set<Conjuros> conjuros, String descripcion) {
         this.nombre = clase;
         this.pGolpe = pGolpe;
         this.personajes = new HashSet<>();
         this.lanzador = lanzador;
         this.conjuros = conjuros;
         this.claseEquipamientos = new HashSet<>();
+        this.descripcion = descripcion;
     }
 
     public Clase(){}
