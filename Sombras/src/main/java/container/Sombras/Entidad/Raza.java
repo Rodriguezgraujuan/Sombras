@@ -104,4 +104,12 @@ public class Raza {
     public void setVelocity(int velocity) {
         this.velocity = velocity;
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 }

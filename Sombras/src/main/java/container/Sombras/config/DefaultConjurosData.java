@@ -83,8 +83,8 @@ public class DefaultConjurosData {
             conjurosPorDefecto.add(new Conjuros("Cadenas de Justicia", "Aprisiona a un enemigo con luz celestial.", claseService.findByNombre("Paladin")));
             conjurosPorDefecto.add(new Conjuros("Resplandor Sagrado", "Ciega a los enemigos con un destello divino.", claseService.findByNombre("Paladin")));
 
-            //Ranger
-            conjurosPorDefecto.add(new Conjuros("Agua Coral", "Aumenta la velocidad del usuario.", claseService.findByNombre("Ranger")));
+            //Explorador
+            conjurosPorDefecto.add(new Conjuros("Agua Coral", "Aumenta la velocidad del usuario.", claseService.findByNombre("Explorador")));
             conjurosPorDefecto.add(new Conjuros("Golpe certero", "Ventaja en tu próximo ataque contra un enemigo, perfecto para asegurar un disparo certero.", claseService.findByNombre("Ranger")));
             conjurosPorDefecto.add(new Conjuros("Marca del cazador", "Aumenta el daño de tus ataques a distancia y te ayuda a rastrear a tu objetivo.", claseService.findByNombre("Ranger")));
             conjurosPorDefecto.add(new Conjuros("Disparo mágico", "Encanta un proyectil para atravesar resistencias o causar efectos adicionales, útil para enfrentarte a enemigos con defensas especiales.", claseService.findByNombre("Ranger")));
@@ -94,7 +94,6 @@ public class DefaultConjurosData {
             for (Conjuros conjuro : conjurosPorDefecto) {
                 if (conjuroService.findByNombre(conjuro.getNombre()) == null) {
                     Clase clase = conjuro.getClase();
-                    System.out.println("Nombre: "+ clase.getNombre());
                     if (clase != null) {
                         conjuro.setClase(clase);
                         conjuros.add(conjuro);

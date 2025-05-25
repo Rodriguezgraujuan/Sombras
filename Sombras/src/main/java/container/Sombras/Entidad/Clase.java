@@ -99,6 +99,14 @@ public class Clase {
         this.claseEquipamientos = claseEquipamientos;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     public void setConjuros(Set<Conjuros> conjuros) {
         this.conjuros = conjuros;
     }

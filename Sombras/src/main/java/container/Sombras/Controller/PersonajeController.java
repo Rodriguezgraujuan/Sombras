@@ -9,7 +9,6 @@ import container.Sombras.Repositorio.Raza_AtributoRepository;
 import container.Sombras.Servicio.*;
 import jakarta.transaction.Transactional;
 import org.apache.coyote.BadRequestException;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -45,7 +44,7 @@ public class PersonajeController {
         if (personajeDto.getNombre().isEmpty() || personajeDto.getApellido().isEmpty() || personajeDto.getNivel() < 0) {
             throw new IllegalArgumentException("Nombre, Apellido o nivel no válido.");
         }
-        System.out.println(personajeDto.toString());
+        System.out.println("PERSONAJE DTO:"+personajeDto.toString());
         Personaje newPersonaje = new Personaje(
                 personajeDto.getNombre(),
                 personajeDto.getApellido(),
@@ -56,7 +55,7 @@ public class PersonajeController {
                 personajeDto.getNivel(),
                 usuario
         );
-        newPersonaje.setPulico(personajeDto.isPulico());
+        newPersonaje.setPublico(personajeDto.isPublico());
         newPersonaje.setUsuario(usuario);
         personajeService.save(newPersonaje);
         return ResponseEntity.ok("Personaje creada correctamente");
@@ -73,7 +72,7 @@ public class PersonajeController {
             datos.add(personaje.getNombre());
             datos.add(personaje.getClase().getNombre());
             datos.add(personaje.getImagen());
-            datos.add(String.valueOf(personaje.isPulico()));
+            datos.add(String.valueOf(personaje.isPublico()));
             lista.add(datos);
         }
 
@@ -89,7 +88,7 @@ public class PersonajeController {
         List<Personaje> personajes = personajeService.findAll();  // Si tienes un servicio que obtiene todos los personajes
 
         for (Personaje personaje : personajes) {
-            if (personaje.isPulico() && !personaje.getUsuario().equals(usuario)) {
+            if (personaje.isPublico() && !personaje.getUsuario().equals(usuario)) {
                 List<String> datos = new ArrayList<>();
                 datos.add(personaje.getId().toString());
                 datos.add(personaje.getNombre());

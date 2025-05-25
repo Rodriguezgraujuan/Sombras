@@ -48,8 +48,8 @@ class PersonajeControllerIntegrationTest {
                   "nivel": 1,
                   "descripcion": "Test",
                   "pulico": true,
-                  "clase": {"id": 1},
-                  "raza": {"id": 1}
+                  "clase": 1,
+                  "raza": 1
                 }
                 
                 """;

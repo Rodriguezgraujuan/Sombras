@@ -1,16 +1,11 @@
 package container.Sombras.Dto;
 
-import container.Sombras.Entidad.Clase;
-import container.Sombras.Entidad.Personaje;
-import container.Sombras.Entidad.Raza;
-import jakarta.persistence.*;
-
 public class PersonajeDto {
 
     private String nombre;
     private String apellido;
     private String descripcion;
-    private boolean pulico;
+    private boolean publico;
     private String imagen;
     private int nivel;
     private int inteligencia;
@@ -23,11 +18,11 @@ public class PersonajeDto {
 
     public PersonajeDto() {}
 
-    public PersonajeDto(String nombre, String apellido, String descripcion, boolean pulico, String imagen, int nivel, int inteligencia, int fuerza, int destreza, int constitucion, int sabiduria, Long clase, Long raza) {
+    public PersonajeDto(String nombre, String apellido, String descripcion, boolean publico, String imagen, int nivel, int inteligencia, int fuerza, int destreza, int constitucion, int sabiduria, Long clase, Long raza) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.descripcion = descripcion;
-        this.pulico = pulico;
+        this.publico = publico;
         this.imagen = imagen;
         this.nivel = nivel;
         this.inteligencia = inteligencia;
@@ -39,8 +34,8 @@ public class PersonajeDto {
         this.raza = raza;
     }
 
-    public boolean isPulico() {
-        return pulico;
+    public boolean isPublico() {
+        return publico;
     }
 
     public Long getClase() {
@@ -131,8 +126,8 @@ public class PersonajeDto {
         this.nombre = nombre;
     }
 
-    public void setPulico(boolean pulico) {
-        this.pulico = pulico;
+    public void setPublico(boolean publico) {
+        this.publico = publico;
     }
 
     public void setRaza(Long raza) {

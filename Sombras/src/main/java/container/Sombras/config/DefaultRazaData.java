@@ -25,12 +25,12 @@ public class DefaultRazaData {
     CommandLineRunner initRazaData(RazaService razaService, ClaseService claseService, AtributoService atributoService, Raza_AtributoRepository raza_AtributoRepository, RazaRepository razaRepository, HabilidadService habilidadService, RazaHabilidadRepository razaHabilidadRepository) {
         return args -> {
             List<Raza> razasPorDefecto = new ArrayList<>();
-            razasPorDefecto.add(new Raza("Humano", 1.75, 25, "descripcion"));
-            razasPorDefecto.add(new Raza("Elfo", 1.95, 30, "descripcion"));
-            razasPorDefecto.add(new Raza("Semielfo", 1.80, 25, "descripcion"));
-            razasPorDefecto.add(new Raza("Gnomo", 0.6, 15, "descripcion"));
-            razasPorDefecto.add(new Raza("Semiorco", 2.8, 25, "descripcion"));
-            razasPorDefecto.add(new Raza("Enano", 0.5, 15, "descripcion"));
+            razasPorDefecto.add(new Raza("Humano", 1.75, 25, "Versátiles y ambiciosos, los humanos se adaptan con facilidad a cualquier entorno. Su tenacidad y diversidad cultural les permite destacar en múltiples disciplinas."));
+            razasPorDefecto.add(new Raza("Elfo", 1.95, 30, "Seres longevos y esbeltos con una profunda conexión con la naturaleza y la magia. Conocidos por su aguda percepción, elegancia y habilidades arcanas."));
+            razasPorDefecto.add(new Raza("Semielfo", 1.80, 25, "Híbridos de humanos y elfos, heredan lo mejor de ambos mundos: la adaptabilidad humana y la sensibilidad élfica. A menudo se sienten divididos entre dos culturas."));
+            razasPorDefecto.add(new Raza("Gnomo", 0.6, 15, "Pequeños, curiosos e ingeniosos, los gnomos son conocidos por su amor por la invención, la alquimia y la magia ilusoria. Su espíritu alegre los hace muy sociables."));
+            razasPorDefecto.add(new Raza("Semiorco", 2.8, 25, "De fuerza imponente y aspecto temible, los semiorcos son resistentes guerreros. Aunque muchas veces juzgados por su herencia orca, algunos buscan redimirse o encontrar su lugar en el mundo."));
+            razasPorDefecto.add(new Raza("Enano", 0.5, 15, "Robustos, obstinados y valientes, los enanos son maestros artesanos y guerreros formidables. Valoran la tradición, el honor y la lealtad por encima de todo."));
 
             for (Raza raza : razasPorDefecto){
                 if (razaService.findByName(raza.getName())==null){

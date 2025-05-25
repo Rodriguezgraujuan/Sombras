@@ -48,9 +48,7 @@ public class DefaultClaseEquipamiento {
             Clase monje = claseService.findByNombre("Monje");
             Clase paladin = claseService.findByNombre("Paladin");
             Clase picaro = claseService.findByNombre("Picaro");
-            Clase caballero = claseService.findByNombre("Caballero");
-            Clase orco = claseService.findByNombre("Orco");
-            Clase ranger = claseService.findByNombre("Ranger");
+
             Set<Clase_Equipamiento> barbaoSet = new HashSet<>();
             Set<Clase_Equipamiento> bardoSet = new HashSet<>();
             Set<Clase_Equipamiento> brujoSet = new HashSet<>();
@@ -63,9 +61,6 @@ public class DefaultClaseEquipamiento {
             Set<Clase_Equipamiento> monjeSet = new HashSet<>();
             Set<Clase_Equipamiento> paladinSet = new HashSet<>();
             Set<Clase_Equipamiento> picaroSet = new HashSet<>();
-            Set<Clase_Equipamiento> caballeroSet = new HashSet<>();
-            Set<Clase_Equipamiento> orcoSet = new HashSet<>();
-            Set<Clase_Equipamiento> rangerSet = new HashSet<>();
 
 
 
@@ -74,7 +69,6 @@ public class DefaultClaseEquipamiento {
             equipamientos.forEach(equipamiento -> {
                 switch (equipamiento.getName()) {
                     case "Gran hacha (dos manos)":
-                        saveIfNotExists(clase_equipamientoservice, orco, equipamiento, orcoSet);
                         saveIfNotExists(clase_equipamientoservice, guerrero, equipamiento, guerreroSet);
                         saveIfNotExists(clase_equipamientoservice, barbaro, equipamiento, barbaoSet);
                         break;
@@ -84,8 +78,6 @@ public class DefaultClaseEquipamiento {
                         saveIfNotExists(clase_equipamientoservice, barbaro, equipamiento, bardoSet);
                         break;
                     case "Paquete de explorador":
-                        saveIfNotExists(clase_equipamientoservice, ranger, equipamiento, rangerSet);
-                        saveIfNotExists(clase_equipamientoservice, caballero, equipamiento, caballeroSet);
                         saveIfNotExists(clase_equipamientoservice, picaro, equipamiento, picaroSet);
                         saveIfNotExists(clase_equipamientoservice, paladin, equipamiento, paladinSet);
                         saveIfNotExists(clase_equipamientoservice, monje, equipamiento, monjeSet);
@@ -96,29 +88,21 @@ public class DefaultClaseEquipamiento {
                         saveIfNotExists(clase_equipamientoservice, bardo, equipamiento, bardoSet);
                         break;
                     case "Cuatro jabalinas":
-                        saveIfNotExists(clase_equipamientoservice, ranger, equipamiento, rangerSet);
                         saveIfNotExists(clase_equipamientoservice, paladin, equipamiento, paladinSet);
                         saveIfNotExists(clase_equipamientoservice, monje, equipamiento, monjeSet);
                         saveIfNotExists(clase_equipamientoservice, explorador, equipamiento, exploradorSet);
                         saveIfNotExists(clase_equipamientoservice, bardo, equipamiento, bardoSet);
                         break;
                     case "Estoque":
-                        saveIfNotExists(clase_equipamientoservice, ranger, equipamiento, rangerSet);
                         saveIfNotExists(clase_equipamientoservice, picaro, equipamiento, picaroSet);
                         saveIfNotExists(clase_equipamientoservice, paladin, equipamiento, paladinSet);
                         saveIfNotExists(clase_equipamientoservice, hechicero, equipamiento, hechizeroSet);
                         saveIfNotExists(clase_equipamientoservice, bardo, equipamiento, bardoSet);
                         break;
-                    case "Espada larga":
-                        saveIfNotExists(clase_equipamientoservice, caballero, equipamiento, caballeroSet);
-                        break;
-                    case "Armadura reforzada":
-                        saveIfNotExists(clase_equipamientoservice, orco, equipamiento, orcoSet);
-                        saveIfNotExists(clase_equipamientoservice, caballero, equipamiento, caballeroSet);
+                    case "Espada larga", "Armadura reforzada":
                         saveIfNotExists(clase_equipamientoservice, paladin, equipamiento, paladinSet);
                         break;
                     case "Paquete diplomatico":
-                        saveIfNotExists(clase_equipamientoservice, caballero, equipamiento, caballeroSet);
                         saveIfNotExists(clase_equipamientoservice, paladin, equipamiento, paladinSet);
                         saveIfNotExists(clase_equipamientoservice, monje, equipamiento, monjeSet);
                         saveIfNotExists(clase_equipamientoservice, mago, equipamiento, magoSet);
@@ -132,7 +116,6 @@ public class DefaultClaseEquipamiento {
                         saveIfNotExists(clase_equipamientoservice, bardo, equipamiento, bardoSet);
                         break;
                     case "Armadura de cuero":
-                        saveIfNotExists(clase_equipamientoservice, orco, equipamiento, orcoSet);
                         saveIfNotExists(clase_equipamientoservice, picaro, equipamiento, picaroSet);
                         saveIfNotExists(clase_equipamientoservice, paladin, equipamiento, paladinSet);
                         saveIfNotExists(clase_equipamientoservice, monje, equipamiento, monjeSet);
@@ -143,8 +126,6 @@ public class DefaultClaseEquipamiento {
                         saveIfNotExists(clase_equipamientoservice, bardo, equipamiento, bardoSet);
                         break;
                     case "Daga":
-                        saveIfNotExists(clase_equipamientoservice, ranger, equipamiento, rangerSet);
-                        saveIfNotExists(clase_equipamientoservice, caballero, equipamiento, caballeroSet);
                         saveIfNotExists(clase_equipamientoservice, picaro, equipamiento, picaroSet);
                         saveIfNotExists(clase_equipamientoservice, paladin, equipamiento, paladinSet);
                         saveIfNotExists(clase_equipamientoservice, monje, equipamiento, monjeSet);
@@ -153,8 +134,7 @@ public class DefaultClaseEquipamiento {
                         saveIfNotExists(clase_equipamientoservice, bardo, equipamiento, bardoSet);
                         break;
                     case "Ballesta ligera":
-                    case "10 Flechas":
-                        saveIfNotExists(clase_equipamientoservice, ranger, equipamiento, rangerSet);
+                    case "10 Flechas", "Arco largo", "20 Flechas":
                         saveIfNotExists(clase_equipamientoservice, explorador, equipamiento, exploradorSet);
                         break;
                     case "Saco de artefactos":
@@ -185,10 +165,6 @@ public class DefaultClaseEquipamiento {
                         saveIfNotExists(clase_equipamientoservice, guerrero, equipamiento, guerreroSet);
                         saveIfNotExists(clase_equipamientoservice, explorador, equipamiento, exploradorSet);
                         break;
-                    case "Arco largo":
-                    case "20 Flechas":
-                        saveIfNotExists(clase_equipamientoservice, ranger, equipamiento, rangerSet);
-                        break;
                 }
             });
             saveClass(barbaro, claseService, barbaoSet);
@@ -203,9 +179,6 @@ public class DefaultClaseEquipamiento {
             saveClass(monje, claseService, monjeSet);
             saveClass(paladin, claseService, paladinSet);
             saveClass(picaro, claseService, picaroSet);
-            saveClass(caballero, claseService, caballeroSet);
-            saveClass(orco, claseService, orcoSet);
-            saveClass(ranger, claseService, rangerSet);
         };
     }
 

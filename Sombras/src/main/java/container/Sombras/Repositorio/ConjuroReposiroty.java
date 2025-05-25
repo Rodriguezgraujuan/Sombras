@@ -5,8 +5,10 @@ import container.Sombras.Entidad.Conjuros;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ConjuroReposiroty extends JpaRepository<Conjuros, Long> {
-    Conjuros findByClase(Clase clase);
+    List<Conjuros> findByClase(Clase clase);
     Conjuros findByNombre(String nombre);
 }

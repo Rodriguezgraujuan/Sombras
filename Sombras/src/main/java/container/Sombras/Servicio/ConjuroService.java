@@ -25,7 +25,7 @@ public class ConjuroService {
     public List<Conjuros> findAll(){
         return conjuroReposiroty.findAll();
     }
-    public Conjuros findByClase(Clase clase){
+    public List<Conjuros> findByClase(Clase clase){
         return conjuroReposiroty.findByClase(clase);
     }
     public Conjuros findByNombre(String nombre){

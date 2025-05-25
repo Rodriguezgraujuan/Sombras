@@ -48,7 +48,7 @@ public class PersonajeControllerTest {
         input.setApellido("Doe");
         input.setNivel(1);
         input.setDescripcion("Un guerrero valiente");
-        input.setPulico(true);
+        input.setPublico(true);
 
         input.setClase(clase.getId());
         input.setRaza(raza.getId());

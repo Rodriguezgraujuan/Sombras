@@ -2,13 +2,6 @@ package container.Sombras.Entidad;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "Personaje")
@@ -28,7 +21,7 @@ public class Personaje {
     private String descripcion;
 
     @Column(name = "publico")
-    private boolean pulico;
+    private boolean publico;
 
     @Column(name = "imagen")
     private String imagen;
@@ -82,7 +75,7 @@ public class Personaje {
     }
 
     public Personaje(boolean publico,String nombre, String apellido, Clase clase, Raza raza, String descripcion, String imagen, int nivel, int destreza, int constitucion, int inteligencia, int fuerza, int sabiduria, Usuario usuario) {
-        pulico = publico;
+        this.publico = publico;
         this.nombre = nombre;
         this.apellido = apellido;
         this.descripcion = descripcion;
@@ -124,8 +117,8 @@ public class Personaje {
         return apellido;
     }
 
-    public boolean isPulico() {
-        return pulico;
+    public boolean isPublico() {
+        return publico;
     }
 
     public void setApellido(String apellido) {
@@ -145,8 +138,8 @@ public class Personaje {
         this.nombre = nombre;
     }
 
-    public void setPulico(boolean pulico) {
-        this.pulico = pulico;
+    public void setPublico(boolean pulico) {
+        this.publico = pulico;
     }
 
     public String getDescripcion() {

@@ -40,7 +40,7 @@ public class UsuarioController {
 
     @PostMapping("/register")
     @Transactional
-    ResponseEntity<?> create(@RequestBody Usuario user) {
+    public ResponseEntity<?> create(@RequestBody Usuario user) {
         if (user.getUsername() == null || user.getEmail() == null || user.getPassword() == null) {
             return ResponseEntity.badRequest().body("Faltan datos requeridos");
         } else if (usuarioService.findByEmail(user.getEmail()) != null) {

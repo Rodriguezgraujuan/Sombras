@@ -1,5 +1,6 @@
 package container.Sombras.Entidad;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -15,6 +16,7 @@ public class Equipamiento {
     @Column(name = "name")
     private String name;
 
+    @JsonIgnore
     @Column(name = "claseEquipamiento")
     @OneToMany(mappedBy = "equipamiento", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Clase_Equipamiento> claseEquipamiento;

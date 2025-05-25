@@ -1,6 +1,7 @@
 $(document).ready(function () {
     $.getJSON('/razas', function (razas) {
         razas.forEach(function (raza) {
+            console.log(raza)
             const html = `
         <div class="col-md-4 d-flex justify-content-center mb-4">
           <div class="card">
