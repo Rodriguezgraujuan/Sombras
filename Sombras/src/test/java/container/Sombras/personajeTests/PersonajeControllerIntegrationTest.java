@@ -27,7 +27,7 @@ import java.util.HashSet;
 @SpringBootTest
 @AutoConfigureMockMvc(addFilters = false)
 @ActiveProfiles("test")
-class PersonajeControllerIntegrationTest {
+public class PersonajeControllerIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;

@@ -19,12 +19,12 @@ public class RazaController {
     private RazaHabilidadRepository razaHabilidadRepository;
 
     @GetMapping("/razas")
-    List<Raza> razas() {
+    public List<Raza> razas() {
         return razaService.findAll();
     }
 
     @GetMapping("/razaHabilidades")
-    List<Raza_Habilidad> razaHabilidades(Long id){
+    public List<Raza_Habilidad> razaHabilidades(Long id){
         System.out.println(razaHabilidadRepository.findByRaza(razaService.findById(id)));
         return razaHabilidadRepository.findByRaza(razaService.findById(id));
     }

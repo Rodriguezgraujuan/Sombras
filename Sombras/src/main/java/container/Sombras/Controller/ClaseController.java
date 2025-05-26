@@ -25,18 +25,18 @@ public class ClaseController {
     private Clase_EquipamientoRepository clase_EquipamientoRepository;
 
     @GetMapping("/clases")
-    List<Clase> clases() {
+    public List<Clase> clases() {
         return claseService.findAll();
     }
 
     @GetMapping("/claseConjuros")
-    List<Conjuros> claseConjuros(Long id){
+    public List<Conjuros> claseConjuros(Long id){
         System.out.println(conjuroReposiroty.findByClase(claseService.findById(id)));
         return conjuroReposiroty.findByClase(claseService.findById(id));
     }
 
     @GetMapping("/claseEquipamientos")
-    List<Equipamiento> claseEquipamientos(Long id){
+    public List<Equipamiento> claseEquipamientos(Long id){
         List<Clase_Equipamiento> claseEquipamientos= clase_EquipamientoRepository.findByClase(claseService.findById(id));
         return claseEquipamientos.stream()
                 .map(Clase_Equipamiento::getEquipamiento)

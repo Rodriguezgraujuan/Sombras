@@ -185,6 +185,7 @@
         <div id="registerErrorMessage" class="text-danger"></div>
         <button type="submit" class="btn btn-custom w-100">Registrarse</button>
     </form>
+
     <p class="mt-3">¿Ya tienes cuenta? <a href="#" class="text-warning" id="switchToLogin">Inicia sesión aquí</a></p>
     <div class="mt-3">
         <a href="/oauth2/authorization/google" class="btn-google">
@@ -216,41 +217,39 @@
             });
         });
     });
-</script>
+</script><script>
+    $(document).ready(function () {
+        $('#registerForm form').submit(function (event) {
+            event.preventDefault();
 
-<script>
-    document.querySelector('#registerForm form').addEventListener('submit', async function(event) {
-        event.preventDefault(); // Evita el envío tradicional del formulario
+            const username = $('#newUsername').val();
+            const email = $('#newEmail').val();
+            const password = $('#newPassword').val();
+            const confirmPassword = $('#confirmedPassword').val();
+            const errorMessage = $('#registerErrorMessage');
+            errorMessage.text('');
 
-        const username = document.getElementById('newUsername').value;
-        const email = document.getElementById('newEmail').value;
-        const password = document.getElementById('newPassword').value;
-        const confirmPassword = document.getElementById('confirmedPassword').value;
-        const errorMessage = document.getElementById('registerErrorMessage');
+            if (password !== confirmPassword) {
+                errorMessage.text('Las contraseñas no coinciden.');
+                return;
+            }
 
-        errorMessage.textContent = ""; // Limpiar errores anteriores
-
-        if (password !== confirmPassword) {
-            errorMessage.textContent = "Las contraseñas no coinciden.";
-            return;
-        }
-
-        const response = await fetch('/register', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, email, password })
+            $.ajax({
+                url: '/register',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ username, email, password }),
+                success: function () {
+                    $('#registerSuccessMessage').remove(); // por si ya existe
+                    $('<div id="registerSuccessMessage" class="text-success mt-3">Registro exitoso</div>')
+                        .insertAfter('#registerErrorMessage');
+                },
+                error: function (xhr) {
+                    errorMessage.text(xhr.responseText || 'Error al registrarse.');
+                }
+            });
         });
-
-        const result = await response.text();
-
-        if (!response.ok) {
-            errorMessage.textContent = result;
-        } else {
-            alert("Registro exitoso");
-            location.reload();
-        }
     });
-
 </script>
 </body>
 </html>
