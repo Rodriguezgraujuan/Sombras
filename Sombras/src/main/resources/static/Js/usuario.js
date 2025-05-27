@@ -7,7 +7,7 @@ $(document).ready(function () {
         console.log(data.personajes.length)
         if (!data.personajes || data.personajes.length === 0) {
             $("#contenido").html(`
-            <div style="text-align: center; margin-top: 50px;">
+            <div style="text-align: center; margin-top: 50px;" id="historialPersonajes">
                 <a style="font-size: 2.5rem; color: #333; text-decoration: none" href="/myPersonajes.html">No tienes personajes</a>
             </div>
         `);
@@ -29,6 +29,34 @@ $(document).ready(function () {
     }).fail(function (error) {
         alert(`Error: ${error.statusText}`);
     });
+
+    // Abrir modal al hacer clic en "Editar Perfil"
+    $("#editProfileBtn").on("click", function () {
+        $("#editUsernameModal").modal("show");
+    });
+
+    // Guardar el nuevo nombre de usuario
+    $("#saveUsernameBtn").on("click", function () {
+        const newUsername = $("#newUsernameInput").val().trim();
+        if (!newUsername) {
+            alert("Por favor ingresa un nombre válido");
+            return;
+        }
+
+        $.ajax({
+            url: "/updateUsername",
+            type: "PUT",
+            data: { newUsername },
+            success: function (response) {
+                alert("Nombre actualizado correctamente");
+                $("#editUsernameModal").modal("hide");
+                $("#username").text(newUsername);
+            },
+            error: function (xhr) {
+                alert("Error: " + xhr.responseText);
+            }
+        });
+    });
 });
 
 function renderUserInfo(data) {
@@ -39,3 +67,5 @@ function renderUserInfo(data) {
         document.getElementById('userImage').src = `/imagen`;
     }
 }
+
+

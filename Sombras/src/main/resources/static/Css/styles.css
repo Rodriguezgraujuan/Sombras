@@ -12,7 +12,7 @@ body {
 }
 
 .hero {
-    background: url('../images/fondo.webp') no-repeat center center;
+    background: url('../images/trono.png') no-repeat center center;
     background-size: cover;
     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
     border-bottom: 5px solid #8b5a2b;

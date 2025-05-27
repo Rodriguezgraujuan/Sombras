@@ -39,7 +39,7 @@ $(document).ready(function () {
         const nivel = parseInt($('#level').val(), 10);
         const clase = $('#clasePersonaje').val();
         const raza = $('#razaPersonaje').val();
-        const publico = $("#visibilidadPersonaje").value === "true";
+        const publico = $("#visibilidadPersonaje").val() === "true";
 
         let isValid = true;
 
@@ -77,7 +77,7 @@ $(document).ready(function () {
             clase: clase,
             raza: raza,
             descripcion: $("#description").val(),
-            pulico: publico
+            publico: publico
         };
 
         $.ajax({
@@ -103,9 +103,14 @@ $(document).ready(function () {
                 console.log("Personajes recibidos:", data);
                 data.forEach(p => {
                     personajesTuyos.push({
-                        id: p[0], nombre: p[1], clase: p[2], imagen: p[3], visibilidad: p[4]
+                        id: p[0],
+                        nombre: p[1],
+                        clase: p[2],
+                        imagen: p[3],
+                        visibilidad: p[4] === true || p[4] === 'true' || p[4] === 1
                     });
                 });
+
 
 
                 const zona = document.getElementById("zonaPersonajes");
@@ -118,7 +123,7 @@ $(document).ready(function () {
       <div class="card-body d-flex flex-column">
         <h5 class="card-title d-flex justify-content-between align-items-center">
           ${p.nombre}
-          <span class="badge bg-${p.visibilidad ? 'success' : 'secondary'} rounded-pill small">
+          <span class="badge bg-${p.visibilidad ? 'success' : 'danger'} rounded-pill small">
             ${p.visibilidad ? 'Público' : 'Privado'}
           </span>
         </h5>

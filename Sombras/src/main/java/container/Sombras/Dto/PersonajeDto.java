@@ -137,4 +137,23 @@ public class PersonajeDto {
     public void setSabiduria(int sabiduria) {
         this.sabiduria = sabiduria;
     }
+
+    @Override
+    public String toString() {
+        return "PersonajeDto{" +
+                "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", publico=" + publico +
+                ", imagen='" + imagen + '\'' +
+                ", nivel=" + nivel +
+                ", inteligencia=" + inteligencia +
+                ", fuerza=" + fuerza +
+                ", destreza=" + destreza +
+                ", constitucion=" + constitucion +
+                ", sabiduria=" + sabiduria +
+                ", clase=" + clase +
+                ", raza=" + raza +
+                '}';
+    }
 }

@@ -57,7 +57,7 @@ public class UsuarioController {
 
                     return ResponseEntity.status(HttpStatus.CREATED).body("Usuario creado con éxito");
                 }else {
-                    return ResponseEntity.badRequest().body("Contraseña invalida");
+                    return ResponseEntity.badRequest().body("Contraseña invalida. Debe tener 1-8 caracteres, 1 minuscula y 1 mayuscula");
                 }
             } catch (Exception e) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al crear el usuario");
@@ -76,4 +76,28 @@ public class UsuarioController {
         }
         return usuario;
     }
+
+    @PutMapping("/updateUsername")
+    @Transactional
+    public ResponseEntity<?> updateUsername(@RequestParam String newUsername) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuario;
+        if (authentication.getPrincipal() instanceof OAuth2User) {
+            usuario = usuarioService.findByEmail(((OAuth2User) authentication.getPrincipal()).getAttribute("email"));
+        }else {
+            usuario = usuarioService.findByEmail(authentication.getName());
+        }
+        if (usuario == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");
+        }
+
+        if (newUsername == null || newUsername.trim().isEmpty()) {
+            return ResponseEntity.badRequest().body("Nombre de usuario no puede estar vacío");
+        }
+
+        usuario.setUsername(newUsername.trim());
+        usuarioService.save(usuario);
+        return ResponseEntity.ok("Nombre de usuario actualizado correctamente");
+    }
+
 }

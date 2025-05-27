@@ -44,7 +44,7 @@ public class PersonajeController {
         if (personajeDto.getNombre().isEmpty() || personajeDto.getApellido().isEmpty() || personajeDto.getNivel() < 0) {
             throw new IllegalArgumentException("Nombre, Apellido o nivel no válido.");
         }
-        System.out.println("PERSONAJE DTO:"+personajeDto.toString());
+        System.out.println("PERSONAJE DTO:"+personajeDto);
         Personaje newPersonaje = new Personaje(
                 personajeDto.getNombre(),
                 personajeDto.getApellido(),
@@ -55,7 +55,9 @@ public class PersonajeController {
                 personajeDto.getNivel(),
                 usuario
         );
+        System.out.println("Publico"+personajeDto.isPublico());
         newPersonaje.setPublico(personajeDto.isPublico());
+        System.out.println("Publico"+newPersonaje.isPublico());
         newPersonaje.setUsuario(usuario);
         personajeService.save(newPersonaje);
         return ResponseEntity.ok("Personaje creada correctamente");
@@ -85,7 +87,7 @@ public class PersonajeController {
 
         List<List<String>> lista = new ArrayList<>();
 
-        List<Personaje> personajes = personajeService.findAll();  // Si tienes un servicio que obtiene todos los personajes
+        List<Personaje> personajes = personajeService.findAll();
 
         for (Personaje personaje : personajes) {
             if (personaje.isPublico() && !personaje.getUsuario().equals(usuario)) {

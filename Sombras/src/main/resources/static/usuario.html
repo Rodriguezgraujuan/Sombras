@@ -67,7 +67,7 @@
             <p id="email"><i class="bi bi-envelope"></i></p>
             <p id="startD"><i class="bi bi-calendar-check"></i> Miembro desde: </p>
             <div class="d-flex justify-content-center gap-3">
-              <a class="btn-medieval text-decoration-none">Editar Perfil</a>
+              <a class="btn-medieval text-decoration-none" id="editProfileBtn">Editar Perfil</a>
               <a class="btn-medieval btn-danger text-decoration-none" href="/logout">Cerrar Sesión</a>
             </div>
             <hr class="mt-4" />
@@ -119,5 +119,24 @@
         </div>
       </div>
     </footer>
+    <!-- Modal para editar nombre -->
+    <div class="modal fade" id="editUsernameModal" tabindex="-1" aria-labelledby="editUsernameModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-white border-warning">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editUsernameModalLabel">Editar Nombre de Usuario</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <input type="text" id="newUsernameInput" class="form-control" placeholder="Nuevo nombre de usuario" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-warning" id="saveUsernameBtn">Guardar Cambios</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>

@@ -40,3 +40,61 @@
 .btn-pergamino:active {
     transform: scale(0.97);
 }
+
+ #detalleModal .modal-content {
+     background: #2c1f1f; /* fondo oscuro taberna */
+     border: 2px solid #8b5e3c; /* borde tipo madera/bronce */
+     border-radius: 12px;
+     color: #f1c40f; /* texto amarillo */
+     font-family: 'Georgia', serif;
+ }
+
+#detalleModal .modal-header,
+#detalleModal .modal-footer {
+    border: none;
+    background-color: #3b2a2a;
+}
+
+#detalleModal .modal-title {
+    color: #f1c40f;
+}
+
+#detalleModal ul {
+    padding-left: 1.2rem;
+}
+
+#detalleModal li {
+    margin-bottom: 6px;
+    list-style-type: '⚔️ ';
+}
+
+#detalleModal strong {
+    color: #f7d774;
+}
+
+#detalleModal p {
+    margin-bottom: 0.5rem;
+}
+
+.card.sin-bordes {
+    height: 350px;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 0 !important;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    box-shadow: none;
+    border: none;
+}
+
+.btn-details {
+    margin-top: auto;
+}
+
+
+
