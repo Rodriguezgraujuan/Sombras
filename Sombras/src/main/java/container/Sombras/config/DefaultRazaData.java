@@ -25,12 +25,12 @@ public class DefaultRazaData {
     CommandLineRunner initRazaData(RazaService razaService, ClaseService claseService, AtributoService atributoService, Raza_AtributoRepository raza_AtributoRepository, RazaRepository razaRepository, HabilidadService habilidadService, RazaHabilidadRepository razaHabilidadRepository) {
         return args -> {
             List<Raza> razasPorDefecto = new ArrayList<>();
-            razasPorDefecto.add(new Raza("Humano", 1.75, 25, "Versátiles y ambiciosos, los humanos se adaptan con facilidad a cualquier entorno. Su tenacidad y diversidad cultural les permite destacar en múltiples disciplinas."));
-            razasPorDefecto.add(new Raza("Elfo", 1.95, 30, "Seres longevos y esbeltos con una profunda conexión con la naturaleza y la magia. Conocidos por su aguda percepción, elegancia y habilidades arcanas."));
-            razasPorDefecto.add(new Raza("Semielfo", 1.80, 25, "Híbridos de humanos y elfos, heredan lo mejor de ambos mundos: la adaptabilidad humana y la sensibilidad élfica. A menudo se sienten divididos entre dos culturas."));
-            razasPorDefecto.add(new Raza("Gnomo", 0.6, 15, "Pequeños, curiosos e ingeniosos, los gnomos son conocidos por su amor por la invención, la alquimia y la magia ilusoria. Su espíritu alegre los hace muy sociables."));
-            razasPorDefecto.add(new Raza("Semiorco", 2.8, 25, "De fuerza imponente y aspecto temible, los semiorcos son resistentes guerreros. Aunque muchas veces juzgados por su herencia orca, algunos buscan redimirse o encontrar su lugar en el mundo."));
-            razasPorDefecto.add(new Raza("Enano", 0.5, 15, "Robustos, obstinados y valientes, los enanos son maestros artesanos y guerreros formidables. Valoran la tradición, el honor y la lealtad por encima de todo."));
+            razasPorDefecto.add(new Raza("Humano", 1.75, 9, "Versátiles y ambiciosos, los humanos se adaptan con facilidad a cualquier entorno. Su tenacidad y diversidad cultural les permite destacar en múltiples disciplinas."));
+            razasPorDefecto.add(new Raza("Elfo", 1.95, 9, "Seres longevos y esbeltos con una profunda conexión con la naturaleza y la magia. Conocidos por su aguda percepción, elegancia y habilidades arcanas."));
+            razasPorDefecto.add(new Raza("Semielfo", 1.80, 9, "Híbridos de humanos y elfos, heredan lo mejor de ambos mundos: la adaptabilidad humana y la sensibilidad élfica. A menudo se sienten divididos entre dos culturas."));
+            razasPorDefecto.add(new Raza("Gnomo", 0.6, 9, "Pequeños, curiosos e ingeniosos, los gnomos son conocidos por su amor por la invención, la alquimia y la magia ilusoria. Su espíritu alegre los hace muy sociables."));
+            razasPorDefecto.add(new Raza("Orco", 2.8, 7, "De fuerza imponente y aspecto temible, los Orco son resistentes guerreros. Aunque muchas veces juzgados por su herencia orca, algunos buscan redimirse o encontrar su lugar en el mundo."));
+            razasPorDefecto.add(new Raza("Enano", 0.5, 5, "Robustos, obstinados y valientes, los enanos son maestros artesanos y guerreros formidables. Valoran la tradición, el honor y la lealtad por encima de todo."));
 
             for (Raza raza : razasPorDefecto){
                 if (razaService.findByName(raza.getName())==null){
@@ -51,8 +51,8 @@ public class DefaultRazaData {
             raza_atributosPorDefecto.add(new Raza_Atributo(razaService.findByName("Gnomo"), atributoService.findByName("Inteligencia Experto")));
             raza_atributosPorDefecto.add(new Raza_Atributo(razaService.findByName("Gnomo"), atributoService.findByName("Destreza")));
             raza_atributosPorDefecto.add(new Raza_Atributo(razaService.findByName("Gnomo"), atributoService.findByName("Constitucion")));
-            raza_atributosPorDefecto.add(new Raza_Atributo(razaService.findByName("Semiorco"), atributoService.findByName("Fuerza Experto")));
-            raza_atributosPorDefecto.add(new Raza_Atributo(razaService.findByName("Semiorco"), atributoService.findByName("Constitucion")));
+            raza_atributosPorDefecto.add(new Raza_Atributo(razaService.findByName("Orco"), atributoService.findByName("Fuerza Experto")));
+            raza_atributosPorDefecto.add(new Raza_Atributo(razaService.findByName("Orco"), atributoService.findByName("Constitucion")));
             raza_atributosPorDefecto.add(new Raza_Atributo(razaService.findByName("Enano"), atributoService.findByName("Constitucion Experto")));
             raza_atributosPorDefecto.add(new Raza_Atributo(razaService.findByName("Enano"), atributoService.findByName("Fuerza")));
             raza_atributosPorDefecto.forEach(raza_atributo -> {
@@ -95,8 +95,8 @@ public class DefaultRazaData {
             raza_habilidadPorDefecto.add(new Raza_Habilidad(razaService.findByName("Gnomo"), habilidadService.findByName("Sigilo")));
             raza_habilidadPorDefecto.add(new Raza_Habilidad(razaService.findByName("Gnomo"), habilidadService.findByName("Percepcion")));
             raza_habilidadPorDefecto.add(new Raza_Habilidad(razaService.findByName("Gnomo"), habilidadService.findByName("Religion")));
-            raza_habilidadPorDefecto.add(new Raza_Habilidad(razaService.findByName("Semiorco"), habilidadService.findByName("Intimidacion")));
-            raza_habilidadPorDefecto.add(new Raza_Habilidad(razaService.findByName("Semiorco"), habilidadService.findByName("Percepcion")));
+            raza_habilidadPorDefecto.add(new Raza_Habilidad(razaService.findByName("Orco"), habilidadService.findByName("Intimidacion")));
+            raza_habilidadPorDefecto.add(new Raza_Habilidad(razaService.findByName("Orco"), habilidadService.findByName("Percepcion")));
             raza_habilidadPorDefecto.add(new Raza_Habilidad(razaService.findByName("Enano"), habilidadService.findByName("Medicina")));
             raza_habilidadPorDefecto.add(new Raza_Habilidad(razaService.findByName("Enano"), habilidadService.findByName("Persuasion")));
             raza_habilidadPorDefecto.add(new Raza_Habilidad(razaService.findByName("Enano"), habilidadService.findByName("Engaño")));
