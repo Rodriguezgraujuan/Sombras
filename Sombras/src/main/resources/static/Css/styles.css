@@ -96,3 +96,8 @@ footer a {
 footer a:hover {
     color: #b8860b;
 }
+
+#formCompra{
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
