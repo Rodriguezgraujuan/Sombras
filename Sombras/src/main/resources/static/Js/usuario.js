@@ -33,22 +33,28 @@ $(document).ready(function () {
     // Abrir modal al hacer clic en "Editar Perfil"
     $("#editProfileBtn").on("click", function () {
         $("#editUsernameModal").modal("show");
+        $("#usernameError").hide();
+        $("#newUsernameInput").removeClass("is-invalid").val('');
     });
 
     // Guardar el nuevo nombre de usuario
     $("#saveUsernameBtn").on("click", function () {
         const newUsername = $("#newUsernameInput").val().trim();
+
         if (!newUsername) {
-            alert("Por favor ingresa un nombre válido");
+            $("#usernameError").show().text("Por favor ingresa un nombre válido");
+            $("#newUsernameInput").addClass("is-invalid");
             return;
         }
+
+        $("#usernameError").hide();
+        $("#newUsernameInput").removeClass("is-invalid");
 
         $.ajax({
             url: "/updateUsername",
             type: "PUT",
             data: { newUsername },
             success: function (response) {
-                alert("Nombre actualizado correctamente");
                 $("#editUsernameModal").modal("hide");
                 $("#username").text(newUsername);
             },
@@ -57,6 +63,7 @@ $(document).ready(function () {
             }
         });
     });
+
 });
 
 function renderUserInfo(data) {

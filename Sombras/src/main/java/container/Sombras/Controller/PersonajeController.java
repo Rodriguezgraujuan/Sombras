@@ -44,14 +44,15 @@ public class PersonajeController {
         if (personajeDto.getNombre().isEmpty() || personajeDto.getApellido().isEmpty() || personajeDto.getNivel() < 0) {
             throw new IllegalArgumentException("Nombre, Apellido o nivel no válido.");
         }
+        Raza raza = razaService.findById(personajeDto.getRaza());
         System.out.println("PERSONAJE DTO:"+personajeDto);
         Personaje newPersonaje = new Personaje(
                 personajeDto.getNombre(),
                 personajeDto.getApellido(),
                 claseService.findById(personajeDto.getClase()),
-                razaService.findById(personajeDto.getRaza()),
+                raza,
                 personajeDto.getDescripcion(),
-                "prueba",
+                "../images/"+raza.getName()+"P.png",
                 personajeDto.getNivel(),
                 usuario
         );
@@ -167,6 +168,18 @@ public class PersonajeController {
         } else {
             throw new BadRequestException("Puntos de nivel inválidos.");
         }
+    }
+
+    @Transactional
+    @PostMapping("/editPrivacy")
+    public void postEditPrivacy(@RequestBody Personaje personajeRequest) throws BadRequestException {
+        Usuario usuario = obtenerUsuarioAutenticado();
+        Personaje personaje = personajeService.findById(personajeRequest.getId());
+        if (personaje.getUsuario().getId()!=usuario.getId()) {
+            throw new IllegalArgumentException("El personaje no es del usuario.");
+        }
+        personaje.setPublico(personajeRequest.isPublico());
+        personajeService.save(personaje);
     }
 
     private Usuario obtenerUsuarioAutenticado() {

@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    let tipoPersonajeActual = 'tuyos'; // valor por defecto
+    let tipoPersonajeActual = 'tuyos';
     $('#crearPersonaje').on('click', function () {
 
         $.get("/razas")
@@ -118,14 +118,16 @@ $(document).ready(function () {
                 personajesTuyos.forEach(p => {
                     zona.innerHTML += `
   <div class="col personajeCard">
-    <div class="card card-personaje" data-id="${p.id}">
-      <img src="${p.imagen}" class="card-img-top" alt="${p.nombre}">
+    <div class="card card-personaje imgCard" data-id="${p.id}"style="background-image: url('${p.imagen}')">
       <div class="card-body d-flex flex-column">
-        <h5 class="card-title d-flex justify-content-between align-items-center">
+        <h5 class="card-title d-flex justify-content-between align-items-center mt-auto">
           ${p.nombre}
-          <span class="badge bg-${p.visibilidad ? 'success' : 'danger'} rounded-pill small">
-            ${p.visibilidad ? 'Público' : 'Privado'}
-          </span>
+          <span 
+  class="badge bg-${p.visibilidad ? 'success' : 'secondary'} rounded-pill small toggle-privacidad" 
+  data-id="${p.id}" 
+  data-estado="${p.visibilidad}">
+  ${p.visibilidad ? 'Público' : 'Privado'}
+</span>
         </h5>
         <div class="d-flex justify-content-between align-items-center mt-2">
           <p class="card-text mb-0">${p.clase}</p>
@@ -158,7 +160,7 @@ $(document).ready(function () {
     $('#personajesTabs').on('click', '.showChareacters', function (e) {
         e.preventDefault();
 
-        tipoPersonajeActual = $(this).data('tipo'); // Guardamos el tipo actual
+        tipoPersonajeActual = $(this).data('tipo');
 
         $('.showChareacters').removeClass('active');
         $(this).addClass('active');
@@ -184,8 +186,7 @@ $(document).ready(function () {
                     zona.innerHTML += `
   <div class="col personajeCard">
     <div class="card card-personaje" data-id="${p.id}">
-      <img src="${p.imagen}" class="card-img-top" alt="${p.nombre}">
-      <div class="card-body d-flex flex-column">
+      <div class="card-body d-flex flex-column imgCard" style="background-image: url('${p.imagen}')">
         <h5 class="card-title">${p.nombre}</h5>
         <div class="d-flex justify-content-between align-items-center mt-2">
           <p class="card-text mb-0">${p.clase}</p>
@@ -267,8 +268,10 @@ $(document).ready(function () {
                     }
 
                     html += `
-        <p class="mt-2 puntos-restantes"><strong>Puntos disponibles:</strong> (Nivel: ${personaje.nivel}, Extra: ${puntosLibres})</p>
-        <button type="submit" class="btn btn-success btn-sm mt-2" ${tipoPersonajeActual === 'tuyos' ? `` : ''}>Guardar</button>
+${tipoPersonajeActual === 'tuyos'
+                        ? `<p class="mt-2 puntos-restantes"><strong>Puntos disponibles:</strong> (Nivel: ${personaje.nivel}, Extra: ${puntosLibres})</p>`
+                        : `<p class="mt-2 puntos-restantes">Nivel: ${personaje.nivel}</p>`}
+${tipoPersonajeActual === 'tuyos' ? `<button type="submit" class="btn btn-success btn-sm mt-2">Guardar</button>` : ''}
     </form>`;
 
                     detalle.html(html).slideDown();

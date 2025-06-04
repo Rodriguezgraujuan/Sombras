@@ -9,6 +9,7 @@
     font-size: 1.25rem;
     font-weight: bold;
     line-height: 1.2;
+    color: white;
   }
   
 
@@ -16,12 +17,6 @@
     font-family: 'MedievalSharp', sans-serif;
     font-size: 1rem;
     line-height: 1.5;
-  }
-  
-
-  .btn {
-    font-family: 'Cinzel', serif;
-    font-size: 0.9rem;
   }
   
   .info-container {
@@ -46,6 +41,7 @@
   color: #fff;
   transition: transform 0.2s;
   max-width: 300px;
+  height: 430px;
 }
 
 .card-personaje:hover {
@@ -117,4 +113,108 @@
   align-self: flex-end;
   font-size: 0.75rem;
   padding: 4px 10px;
+}
+
+.imgCard{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+}
+
+.modal-content.medieval-modal {
+  background: linear-gradient(to bottom, #3b2f2f, #1e1a1a);
+  border: 2px solid #a97447;
+  border-radius: 10px;
+  font-family: 'Uncial Antiqua', serif;
+  box-shadow: 0 0 20px rgba(192, 131, 67, 0.6);
+}
+
+.modal-header, .modal-footer {
+  background-color: rgba(48, 34, 24, 0.85);
+  border-bottom: 1px solid #a97447;
+  border-top: 1px solid #a97447;
+}
+
+.modal-title {
+  color: #e5d3b3;
+  font-size: 1.8rem;
+  font-family: 'Cinzel Decorative', cursive;
+}
+
+.form-label {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #d1bfa3;
+  font-family: 'Cinzel', serif;
+}
+
+.form-control,
+.form-select {
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid #b6894e;
+  color: #f1e8dc  !important;
+  border-radius: 6px;
+  font-family: 'MedievalSharp', cursive;
+}
+
+textarea.form-control {
+  min-height: 100px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: #d1a157;
+  box-shadow: 0 0 5px #d1a157;
+  outline: none;
+}
+
+.text-danger {
+  font-style: italic;
+  font-family: 'MedievalSharp', cursive;
+  font-size: 0.85rem;
+}
+
+.btn {
+  border-radius: 6px;
+  border: 2px solid #a97447;
+  background-color: #5e3c26;
+  color: #f2e8cf;
+  font-family: 'Cinzel', serif;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+  background-color: #7b4f2c;
+  transform: scale(1.05);
+}
+
+.btn-success {
+  background-color: #4a3e2f;
+  border-color: #c28343;
+}
+
+.btn-success:hover {
+  background-color: #6c543b;
+}
+
+.btn-secondary {
+  background-color: #3d3327;
+  border-color: #b6894e;
+}
+
+.btn-secondary:hover {
+  background-color: #5c4b3a;
+}
+
+.toggle-privacidad {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  opacity: 0.85;
+}
+
+.toggle-privacidad:hover {
+  opacity: 1;
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.3);
 }
