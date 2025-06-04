@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $.getJSON('/razas', function (razas) {
         razas.forEach(function (raza) {
-            const imagenFondo = `../images/${raza.name}.png`;
+            const imagenFondo = `../images/${raza.name}.webp`;
 
             const html = `
     <div class="col-md-4 d-flex flex-column align-items-center mb-5">

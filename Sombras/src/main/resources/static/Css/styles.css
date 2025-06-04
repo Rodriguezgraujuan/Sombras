@@ -12,21 +12,26 @@ body {
 }
 
 .hero {
-    background: url('../images/trono.png') no-repeat center center;
+    background: url('../images/trono.webp') no-repeat center center;
     background-size: cover;
     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
     border-bottom: 5px solid #8b5a2b;
     image-rendering: auto;   /* Evita pixelación */
+    height: 400px;
+    display: flex;
+    justify-content: center; /* Eje horizontal */
+    align-items: center;     /* Eje vertical */
+    text-align: center;
 
 }
 
 .navbar {
-    background-color: #1c1c1c !important; /* Negro cavernoso */
+    background-color: #1c1c1c !important;
     border-bottom: 3px solid gold;
 }
 
 .navbar {
-background-color: #1c1c1c !important; /* Negro cavernoso */
+background-color: #1c1c1c !important;
 border-bottom: 3px solid gold;
 margin-left: 0;
 margin-right: 0;
@@ -70,7 +75,7 @@ margin-right: 0;
 }
 
 .card {
-    background: url('../images/pergamino.jpg') center;
+    background: url('../images/pergamino.webp') center;
     background-size: cover;
     object-fit: cover;
     color: #471700;

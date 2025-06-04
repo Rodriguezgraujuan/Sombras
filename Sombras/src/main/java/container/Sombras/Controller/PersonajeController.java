@@ -52,7 +52,7 @@ public class PersonajeController {
                 claseService.findById(personajeDto.getClase()),
                 raza,
                 personajeDto.getDescripcion(),
-                "../images/"+raza.getName()+"P.png",
+                "../images/"+raza.getName()+"P.webp",
                 personajeDto.getNivel(),
                 usuario
         );

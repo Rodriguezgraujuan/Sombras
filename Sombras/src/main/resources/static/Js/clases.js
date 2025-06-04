@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $.getJSON('/clases', function (clases) {
         clases.forEach(function (clase) {
-            const imagenFondo = `../images/${clase.nombre}.png`;
+            const imagenFondo = `../images/${clase.nombre}.webp`;
 
             const html = `
     <div class="col-md-4 d-flex flex-column align-items-center mb-5">
