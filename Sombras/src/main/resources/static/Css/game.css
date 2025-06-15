@@ -108,12 +108,32 @@ body {
   box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-#userDropDow {
-  background-color: #7f7f7f;
+.carousel {
+  display: flex;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  gap: 1rem;
+  padding: 1rem 0;
 }
 
-@media (max-width: 768px) {
-  .card {
-    max-width: 90%;
-  }
+.group {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.card {
+  flex: 0 0 auto;
+  width: 300px; /* o usa % */
+  scroll-snap-align: start;
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+#userDropDow {
+  background-color: #7f7f7f;
 }
