@@ -35,3 +35,7 @@ body {
     color: #ecf0f1;
     font-size: 1.1rem;
   }
+
+#userDropDow {
+  background-color: #7f7f7f;
+}

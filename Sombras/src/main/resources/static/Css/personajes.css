@@ -227,3 +227,19 @@ textarea.form-control {
 .filtro-input::placeholder {
   color: #bbb;
 }
+
+#filtroClase, #filtroRaza, #filtroNombre{
+  color: white;
+}
+
+#formCrearPersonaje input,
+#formCrearPersonaje select,
+#formCrearPersonaje textarea {
+  color: white;
+}
+
+#formCrearPersonaje select {
+  color: white;
+  background-color: #3e2c23;
+  border: 1px solid #5c4438;
+}
