@@ -110,3 +110,13 @@ footer a:hover {
 #userDropDown {
     background-color: #7f7f7f;
 }
+
+@media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 1.3rem !important;
+        white-space: nowrap; /* evita que salte de línea */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 90vw; /* evita que desborde el ancho de la pantalla */
+    }
+}
