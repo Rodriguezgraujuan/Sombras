@@ -244,20 +244,19 @@ textarea.form-control {
   border: 1px solid #5c4438;
 }
 
-@media (max-width: 576px) {
-  .container-fluid.px-4 {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+footer {
+  background-color: #000; /* Asegúrate de que no sea blanco */
+}
+
+@media (max-width: 768px) {
+  .filtros-contenedor {
+    flex-direction: column !important;
+    align-items: stretch !important;
   }
 
-  #zonaPersonajes.row {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  #zonaPersonajes > .col,
-  #zonaPersonajes > [class*="col-"] {
-    flex: 0 0 100% !important;
-    max-width: 100% !important;
+  .filtros-contenedor > * {
+    width: 100%;
+    margin-bottom: 1rem;
   }
 }
+
