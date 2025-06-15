@@ -107,7 +107,8 @@ $(document).ready(function () {
                         nombre: p[1],
                         clase: p[2],
                         imagen: p[3],
-                        visibilidad: p[4] === true || p[4] === 'true' || p[4] === 1
+                        visibilidad: p[4] === true || p[4] === 'true' || p[4] === 1,
+                        raza: p[5]
                     });
                 });
 
@@ -117,7 +118,7 @@ $(document).ready(function () {
                 zona.innerHTML = "";
                 personajesTuyos.forEach(p => {
                     zona.innerHTML += `
-  <div class="col personajeCard">
+  <div class="col personajeCard" data-raza="${p.raza}">
     <div class="card card-personaje imgCard" data-id="${p.id}"style="background-image: url('${p.imagen}')">
       <div class="card-body d-flex flex-column">
         <h5 class="card-title d-flex justify-content-between align-items-center mt-auto">
@@ -175,7 +176,7 @@ $(document).ready(function () {
                 console.log("Personajes recibidos:", data);
                 data.forEach(p => {
                     personajesOtros.push({
-                        id: p[0], nombre: p[1], clase: p[2], imagen: p[3]
+                        id: p[0], nombre: p[1], clase: p[2], imagen: p[3], raza: p[4]
                     });
                 });
 
@@ -184,7 +185,7 @@ $(document).ready(function () {
                 zona.innerHTML = "";
                 personajesOtros.forEach(p => {
                     zona.innerHTML += `
-  <div class="col personajeCard">
+  <div class="col personajeCard" data-raza="${p.raza}">
     <div class="card card-personaje" data-id="${p.id}">
       <div class="card-body d-flex flex-column imgCard" style="background-image: url('${p.imagen}')">
         <h5 class="card-title">${p.nombre}</h5>

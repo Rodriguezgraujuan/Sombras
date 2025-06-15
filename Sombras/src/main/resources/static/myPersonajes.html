@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="Css/personajes.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="Js/filtrosPersonajes.js" defer></script>
 
   </head>
   <body class="d-flex flex-column min-vh-100">
@@ -70,11 +71,54 @@
             <button class="nav-link showChareacters" data-tipo="otros">De Otros</button>
           </li>
         </ul>
-        <div>
-          <button class="btn btn-success me-2" id="crearPersonaje">
+        <!-- Contenedor colapsable con filtros -->
+        <div class="collapse" id="filtroCollapse">
+          <div class="d-flex flex-wrap gap-3">
+            <div class="flex-fill">
+              <label for="filtroNombre" class="form-label mb-1">Nombre</label>
+              <input type="text" class="form-control filtro-input" id="filtroNombre" placeholder="Buscar por nombre...">
+            </div>
+            <div class="flex-fill">
+              <label for="filtroClase" class="form-label mb-1">Clase</label>
+              <select class="form-select filtro-input" id="filtroClase">
+                <option value="">Todas</option>
+                <option value="Barbaro">Barbaro</option>
+                <option value="Bardo">Bardo</option>
+                <option value="Brujo">Brujo</option>
+                <option value="Clerigo">Clerigo</option>
+                <option value="Druida">Druida</option>
+                <option value="Explorador">Explorador</option>
+                <option value="Guerrero">Guerrero</option>
+                <option value="Hechicero">Hechicero</option>
+                <option value="Mago">Mago</option>
+                <option value="Monje">Monje</option>
+                <option value="Paladin">Paladin</option>
+                <option value="Picaro">Picaro</option>
+              </select>
+            </div>
+            <div class="flex-fill">
+              <label for="filtroRaza" class="form-label mb-1">Raza</label>
+              <select class="form-select filtro-input" id="filtroRaza">
+                <option value="">Todas</option>
+                <option value="Humano">Humano</option>
+                <option value="Elfo">Elfo</option>
+                <option value="Semielfo">Semielfo</option>
+                <option value="Gnomo">Gnomo</option>
+                <option value="Orco">Orco</option>
+                <option value="Enano">Enano</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <button class="btn btn-outline-light" id="toggleFiltros" type="button" data-bs-toggle="collapse" data-bs-target="#filtroCollapse" aria-expanded="false" aria-controls="filtroCollapse">
+            <i class="bi bi-funnel-fill"></i>
+          </button>
+          <button class="btn btn-success" id="crearPersonaje">
             <i class="bi bi-plus-circle"></i> Crear Personaje
           </button>
         </div>
+
       </div>
       <div class="container-fluid px-4">
         <div id="zonaPersonajes" class="row row-cols-1 row-cols-md-3 g-8">
@@ -200,7 +244,7 @@
             </div>
             <hr class="w-100">
             <div>
-              <p class="mb-0">&copy; 2024 Sombras detrás del Trono. Todos los derechos reservados.</p>
+              <p class="mb-0">&copy; 2025 Sombras detrás del Trono. Todos los derechos reservados.</p>
             </div>
           </div>
         </div>

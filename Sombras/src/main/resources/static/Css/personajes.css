@@ -153,7 +153,6 @@
 .form-select {
   background-color: rgba(255, 255, 255, 0.06);
   border: 1px solid #b6894e;
-  color: #f1e8dc  !important;
   border-radius: 6px;
   font-family: 'MedievalSharp', cursive;
 }
@@ -217,4 +216,14 @@ textarea.form-control {
 .toggle-privacidad:hover {
   opacity: 1;
   box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.3);
+}
+
+.filtro-input {
+  background-color: #b64c20 !important; /* Input más opaco */
+  color: #f8f9fa;
+  border: 1px solid #555;
+}
+
+.filtro-input::placeholder {
+  color: #bbb;
 }

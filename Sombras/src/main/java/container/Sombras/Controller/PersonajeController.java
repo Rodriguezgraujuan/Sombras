@@ -76,6 +76,7 @@ public class PersonajeController {
             datos.add(personaje.getClase().getNombre());
             datos.add(personaje.getImagen());
             datos.add(String.valueOf(personaje.isPublico()));
+            datos.add(personaje.getRaza().getName());
             lista.add(datos);
         }
 
@@ -97,6 +98,7 @@ public class PersonajeController {
                 datos.add(personaje.getNombre());
                 datos.add(personaje.getClase().getNombre());
                 datos.add(personaje.getImagen());
+                datos.add(personaje.getRaza().getName());
                 lista.add(datos);
             }
         }
