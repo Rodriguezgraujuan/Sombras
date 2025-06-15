@@ -244,14 +244,11 @@ textarea.form-control {
   border: 1px solid #5c4438;
 }
 
-footer {
-  background-color: #000; /* Asegúrate de que no sea blanco */
-}
-
 @media (max-width: 768px) {
   .filtros-contenedor {
     flex-direction: column !important;
     align-items: stretch !important;
+    background-color: #1c1c1c;
   }
 
   .filtros-contenedor > * {
