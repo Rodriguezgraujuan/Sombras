@@ -251,12 +251,12 @@ textarea.form-control {
   }
 
   .filtros-contenedor > * {
-    width: 300px;
+    width: 100%;
     margin-bottom: 1rem;
   }
 
   .nav-tabs {
-    width: 100%;
+    width: 300px;
     flex-wrap: nowrap !important;
   }
 }
