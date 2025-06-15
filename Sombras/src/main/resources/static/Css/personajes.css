@@ -248,12 +248,16 @@ textarea.form-control {
   .filtros-contenedor {
     flex-direction: column !important;
     align-items: stretch !important;
-    background-color: #1c1c1c;
   }
 
   .filtros-contenedor > * {
     width: 100%;
     margin-bottom: 1rem;
+  }
+
+  .nav-tabs {
+    width: auto !important;
+    flex-wrap: nowrap !important;
   }
 }
 
